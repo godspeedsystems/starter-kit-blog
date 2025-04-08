@@ -53,7 +53,7 @@ const CustomLogo = ({
           logoSizes[size],
         )}
         aria-label={`${blogTitle} home page`}
-        href={`/${isPostPage ? '?source=top_nav_blog_home' : ''}`}
+        href="https://godspeed.systems"
       >
         <CustomImage
           priority

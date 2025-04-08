@@ -65,7 +65,7 @@ export const PersonalHeader = () => {
 				<h1>
 					<Link
 						className="flex flex-row items-center gap-2 text-lg font-bold leading-tight tracking-tight text-black dark:text-white"
-						href="/"
+						href="https://godspeed.systems"
 						aria-label={`${publication.author.name}'s blog home page`}
 					>
 						{publication.author.profilePicture && (
