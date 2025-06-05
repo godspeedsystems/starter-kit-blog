@@ -1,49 +1,49 @@
-import CustomImage from './custom-image';
 import Link from 'next/link';
-import { resizeImage, getBlurHash } from '../utils/image';
-import { Preferences, User, Maybe, PublicationFragment } from '../generated/graphql';
 import { twJoin } from 'tailwind-merge';
+import { Maybe, Preferences, PublicationFragment, User } from '../generated/graphql';
 import { generateBlogTitleWithoutDisplayTitle } from '../utils/commonUtils';
+import { getBlurHash, resizeImage } from '../utils/image';
+import CustomImage from './custom-image';
 
 type PublicationLogoProps = {
-  publication: Pick<PublicationFragment, 'title' | 'isTeam'> & {
-    author: Pick<User, 'username' | 'name' | 'profilePicture'>;
-  } & {
-    preferences: Pick<Preferences, 'logo' | 'darkMode'>;
-  };
-  size?: 'xs' | 'sm' | 'lg' | 'xl';
-  withProfileImage?: boolean;
-  isPostPage?: boolean | null;
+	publication: Pick<PublicationFragment, 'title' | 'isTeam'> & {
+		author: Pick<User, 'username' | 'name' | 'profilePicture'>;
+	} & {
+		preferences: Pick<Preferences, 'logo' | 'darkMode'>;
+	};
+	size?: 'xs' | 'sm' | 'lg' | 'xl';
+	withProfileImage?: boolean;
+	isPostPage?: boolean | null;
 };
 
 const textStyles = {
-  xs: 'text-base text-left',
-  sm: 'text-lg md:text-xl text-left',
-  lg: 'text-xl md:text-2xl text-left',
-  xl: 'text-2xl text-center',
+	xs: 'text-base text-left',
+	sm: 'text-lg md:text-xl text-left',
+	lg: 'text-xl md:text-2xl text-left',
+	xl: 'text-2xl text-center',
 } as const;
 
 const logoSizes = {
-  xs: 'w-44',
-  sm: 'w-44',
-  lg: 'w-64',
-  xl: 'w-64',
+	xs: 'w-44',
+	sm: 'w-44',
+	lg: 'w-64',
+	xl: 'w-64',
 } as const;
 
 const CustomLogo = ({
-  publication,
-  logoSrc,
-  size = 'lg',
-  isPostPage,
+	publication,
+	logoSrc,
+	size = 'lg',
+	isPostPage,
 }: {
-  publication: Pick<PublicationFragment, 'title'> & {
-    author: Pick<User, 'name'>;
-  };
-  logoSrc: Maybe<string> | undefined;
-  size?: 'xs' | 'sm' | 'lg' | 'xl';
-  isPostPage?: boolean | null;
+	publication: Pick<PublicationFragment, 'title'> & {
+		author: Pick<User, 'name'>;
+	};
+	logoSrc: Maybe<string> | undefined;
+	size?: 'xs' | 'sm' | 'lg' | 'xl';
+	isPostPage?: boolean | null;
 }) => {
-  const blogTitle = generateBlogTitleWithoutDisplayTitle(publication);
+	const blogTitle = generateBlogTitleWithoutDisplayTitle(publication);
 
   return (
     <h1 className="blog-main-logo">
@@ -70,21 +70,21 @@ const CustomLogo = ({
 };
 
 const DefaultLogo = ({
-  publication,
-  size = 'lg',
-  withProfileImage = false,
-  isPostPage,
+	publication,
+	size = 'lg',
+	withProfileImage = false,
+	isPostPage,
 }: {
-  publication: Pick<PublicationFragment, 'title' | 'isTeam'> & {
-    author: Pick<User, 'username' | 'name' | 'profilePicture'>;
-  } & {
-    preferences: Pick<Preferences, 'logo' | 'darkMode'>;
-  };
-  size?: 'xs' | 'sm' | 'lg' | 'xl';
-  withProfileImage?: boolean;
-  isPostPage?: boolean | null;
+	publication: Pick<PublicationFragment, 'title' | 'isTeam'> & {
+		author: Pick<User, 'username' | 'name' | 'profilePicture'>;
+	} & {
+		preferences: Pick<Preferences, 'logo' | 'darkMode'>;
+	};
+	size?: 'xs' | 'sm' | 'lg' | 'xl';
+	withProfileImage?: boolean;
+	isPostPage?: boolean | null;
 }) => {
-  const blogTitle = generateBlogTitleWithoutDisplayTitle(publication);
+	const blogTitle = generateBlogTitleWithoutDisplayTitle(publication);
 
   return (
     <h1
@@ -121,32 +121,27 @@ const DefaultLogo = ({
 };
 
 function PublicationLogo(props: PublicationLogoProps) {
-  const { publication, size, withProfileImage, isPostPage } = props;
-  const { preferences } = publication;
+	const { publication, size, withProfileImage, isPostPage } = props;
+	const { preferences } = publication;
 
-  if (!publication) {
-    return null;
-  }
-  const useLogo = false || preferences.logo;
-  if (useLogo) {
-    const logoSrc = false ? preferences.darkMode?.logo : preferences.logo;
-    return (
-      <CustomLogo
-        publication={publication}
-        logoSrc={logoSrc}
-        size={size}
-        isPostPage={isPostPage}
-      />
-    );
-  }
-  return (
-    <DefaultLogo
-      publication={publication}
-      size={size}
-      withProfileImage={withProfileImage}
-      isPostPage={isPostPage}
-    />
-  );
+	if (!publication) {
+		return null;
+	}
+	const useLogo = false || preferences.logo;
+	if (useLogo) {
+		const logoSrc = false ? preferences.darkMode?.logo : preferences.logo;
+		return (
+			<CustomLogo publication={publication} logoSrc={logoSrc} size={size} isPostPage={isPostPage} />
+		);
+	}
+	return (
+		<DefaultLogo
+			publication={publication}
+			size={size}
+			withProfileImage={withProfileImage}
+			isPostPage={isPostPage}
+		/>
+	);
 }
 
 export default PublicationLogo;

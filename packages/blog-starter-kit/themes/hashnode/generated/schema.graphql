@@ -140,6 +140,15 @@ type AddReplyPayload {
   reply: Reply
 }
 
+input AddReplyInput {
+  commentId: ID!
+  contentMarkdown: String!
+}
+
+type AddReplyPayload {
+  reply: Reply
+}
+
 """
 Contains the flag indicating if the audio blog feature is enabled or not.
 User can enable or disable the audio blog feature from the publication settings.
@@ -1185,6 +1194,12 @@ enum CustomDomainStatus {
   VERIFYING
 }
 
+enum CustomDomainStatus {
+  INVALID
+  VALID
+  VERIFYING
+}
+
 """Contains the publication's dark mode preferences."""
 type DarkModePreferences {
   """A flag indicating if the dark mode is enabled for the publication."""
@@ -1985,6 +2000,13 @@ type DomainStatus {
   It is only present if the domain is verified.
   """
   verifiedAt: DateTime
+  """A flag indicating the status of a publication domain"""
+  status: CustomDomainStatus!
+  """
+  A timestamp indicating when the domain was verified.
+  It is only present if the domain is verified.
+  """
+  verifiedAt: DateTime
 }
 
 """
@@ -2004,6 +2026,8 @@ type Draft implements Node {
   Returns the user details of the co-authors of the post.
   
   Only available for team publications.
+  
+  Only available for team publications.
   """
   coAuthors: [User!]
   """Content of the draft in HTML and markdown"""
@@ -2016,6 +2040,12 @@ type Draft implements Node {
   features: DraftFeatures!
   """The ID of the draft."""
   id: ID!
+  """
+  Whether or not the draft has been submitted for review.
+  
+  Only applicable to drafts in team publications.
+  """
+  isSubmittedForReview: Boolean
   """
   Whether or not the draft has been submitted for review.
   
@@ -2133,14 +2163,35 @@ type DraftRevisionEdge implements Edge {
   node: DraftRevision!
 }
 
+type DraftRevision implements Node {
+  """The name of the user who created the revision."""
+  authorName: String!
+  """The content of the draft revision."""
+  content: Content!
+  """The time the revision has been created."""
+  createdAt: DateTime!
+  """The ID of the draft revision."""
+  id: ID!
+}
+
+type DraftRevisionEdge implements Edge {
+  """A cursor for use in pagination."""
+  cursor: String!
+  """A node in the connection containing a draft revision."""
+  node: DraftRevision!
+}
+
 type DraftSettings {
   """A flag to indicate if the comments are disabled for the post."""
   disableComments: Boolean!
+  """Whether or not the post is hidden from the Hashnode community."""
   """Whether or not the post is hidden from the Hashnode community."""
   isDelisted: Boolean!
   """A flag to indicate if the cover image is shown below title of the post. Default position of cover is top of title."""
   stickCoverToBottom: Boolean!
 }
+
+union DraftTag = DraftBaseTag | Tag
 
 union DraftTag = DraftBaseTag | Tag
 
@@ -2737,7 +2788,9 @@ type HeadlessCMSFeature implements Feature {
 
 enum HttpRedirectionType {
   """A permanent redirect that corresponds to the 302 HTTP status code."""
+  """A permanent redirect that corresponds to the 302 HTTP status code."""
   PERMANENT
+  """A temporary redirect that corresponds to the 301 HTTP status code."""
   """A temporary redirect that corresponds to the 301 HTTP status code."""
   TEMPORARY
 }
@@ -2918,6 +2971,8 @@ interface IUser {
     first: Int!
     """The sort direction for the publication."""
     sortBy: UserPublicationsSort = DATE_CREATED_DESC
+    """The sort direction for the publication."""
+    sortBy: UserPublicationsSort = DATE_CREATED_DESC
   ): UserPublicationsConnection!
   """The social media links of the user. Shown on the user's profile."""
   socialMediaLinks: SocialMediaLinks
@@ -2985,6 +3040,18 @@ input MetaTagsInput {
   image: String
   """The title of the post used in og:title for SEO."""
   title: String
+}
+
+input MoveDocumentationSidebarItemInput {
+  guideSlug: String!
+  itemId: ID!
+  parentId: ID
+  position: Int
+  projectId: ID!
+}
+
+type MoveDocumentationSidebarItemPayload {
+  guide: DocumentationGuide
 }
 
 input MoveDocumentationSidebarItemInput {
@@ -3179,6 +3246,15 @@ type Mutation {
   updateSeries(input: UpdateSeriesInput!): UpdateSeriesPayload!
   updateWebhook(input: UpdateWebhookInput!): UpdateWebhookPayload!
   verifyDocumentationProjectCustomDomain(input: VerifyDocumentationProjectCustomDomainInput!): VerifyDocumentationProjectCustomDomainPayload!
+  updateRedirectionRule(input: UpdateRedirectionRuleInput!): UpdateRedirectionRulePayload!
+  """Updates a reply"""
+  updateReply(input: UpdateReplyInput!): UpdateReplyPayload!
+  """Updates a role based invite for a publication."""
+  updateRoleBasedInvite(input: UpdateRoleBasedInviteInput!): UpdateRoleBasedInvitePayload!
+  """Updates a series."""
+  updateSeries(input: UpdateSeriesInput!): UpdateSeriesPayload!
+  updateWebhook(input: UpdateWebhookInput!): UpdateWebhookPayload!
+  verifyDocumentationProjectCustomDomain(input: VerifyDocumentationProjectCustomDomainInput!): VerifyDocumentationProjectCustomDomainPayload!
 }
 
 """
@@ -3206,7 +3282,16 @@ type MyUser implements IUser & Node {
     """The number of posts to return."""
     first: Int!
   ): UserDraftConnection!
+  drafts(
+    """A cursor to the last item in the previous page."""
+    after: String
+    """The number of posts to return."""
+    first: Int!
+  ): UserDraftConnection!
   """Email address of the user. Only available to the authenticated user."""
+  email: String!
+  """The email notification preferences of the user."""
+  emailNotificationPreferences: EmailNotificationPreferences!
   email: String!
   """The email notification preferences of the user."""
   emailNotificationPreferences: EmailNotificationPreferences!
@@ -3258,7 +3343,11 @@ type MyUser implements IUser & Node {
     first: Int!
     """The sort direction for the publication."""
     sortBy: UserPublicationsSort = DATE_CREATED_DESC
+    """The sort direction for the publication."""
+    sortBy: UserPublicationsSort = DATE_CREATED_DESC
   ): UserPublicationsConnection!
+  """Returns the user's role if any."""
+  role: UserRole!
   """Returns the user's role if any."""
   role: UserRole!
   """The social media links of the user. Shown on the user's profile."""
@@ -3327,7 +3416,19 @@ type NewsletterSubscriber implements Node {
 
 enum NewsletterSubscribeStatus {
   CONFIRMED
+  CONFIRMED
   PENDING
+}
+
+type NewsletterSubscriber implements Node {
+  """The date the subscriber was added."""
+  createdAt: DateTime! @deprecated(reason: "Use `subscribedAt` instead. Will be removed after 12/4/2024")
+  """The email of the subscriber."""
+  email: String!
+  id: ID!
+  """The status of the subscriber."""
+  status: NewsletterSubscribeStatus!
+  subscribedAt: DateTime!
 }
 
 enum NewsletterUnsubscribeStatus {
@@ -3377,6 +3478,15 @@ interface PageConnection {
   nodes: [Node!]!
   """Information to aid in pagination."""
   pageInfo: OffsetPageInfo!
+}
+
+"""
+An edge that contains a node and is used in page based pagination.
+This is a common interface for all edges in page based pagination.
+"""
+interface PageEdge {
+  """A node in the connection."""
+  node: Node!
 }
 
 """
@@ -3530,8 +3640,10 @@ type Post implements Node {
   """The ID of the post. Used to uniquely identify the post."""
   id: ID!
   """Whether or not the post has automatically been published via RSS feed."""
+  """Whether or not the post has automatically been published via RSS feed."""
   isAutoPublishedFromRSS: Boolean!
   """
+  Whether or not the authenticated user is following this post.
   Whether or not the authenticated user is following this post.
   
   Returns `null` if the user is not authenticated.
@@ -3549,6 +3661,14 @@ type Post implements Node {
   ogMetaData: OpenGraphMetaData
   """Preference settings for the post. Contains information about if the post is pinned to blog, comments are disabled, etc."""
   preferences: PostPreferences!
+  """
+  The previous slugs of the post. Only present if the slug has been changed.
+  
+  This could be used to create redirects for all posts from all previous slugs to the current slug.
+  
+  The latest slug is always the first element in the array.
+  """
+  previousSlugs: [String!]!
   """
   The previous slugs of the post. Only present if the slug has been changed.
   
@@ -3746,6 +3866,7 @@ input PostLikerFilter {
 type PostPreferences {
   """A flag to indicate if the comments are disabled for the post."""
   disableComments: Boolean!
+  """Whether or not the post is hidden from the Hashnode community."""
   """Whether or not the post is hidden from the Hashnode community."""
   isDelisted: Boolean!
   """A flag to indicate if the post is pinned to blog. Pinned post is shown on top of the blog."""
@@ -4081,6 +4202,14 @@ type Publication implements Node {
     """The number of members to return on a single page."""
     pageSize: Int!
   ): PublicationMemberConnection!
+  members(
+    """Filters to be applied to the member list."""
+    filter: PublicationMemberConnectionFilter
+    """The page number that should be returned."""
+    page: Int!
+    """The number of members to return on a single page."""
+    pageSize: Int!
+  ): PublicationMemberConnection!
   """The meta tags associated with the publication."""
   metaTags: String
   """Information about the publication's Open Graph metadata i.e. image."""
@@ -4115,6 +4244,13 @@ type Publication implements Node {
     """The number of members to return on a single page."""
     pageSize: Int!
   ): PublicationMemberConnection!
+  """Returns a paginated list of public members of the publication."""
+  publicMembers(
+    """The page number that should be returned."""
+    page: Int!
+    """The number of members to return on a single page."""
+    pageSize: Int!
+  ): PublicationMemberConnection!
   """Publications that are recommended by this publication."""
   recommendedPublications: [UserRecommendedPublicationEdge!]!
   """Publications that are recommending this publication."""
@@ -4124,6 +4260,15 @@ type Publication implements Node {
     """Size of the page."""
     pageSize: Int!
   ): PublicationUserRecommendingPublicationConnection!
+  """
+  Returns a post by a previous slug. It does not resolve a post by its current slug.
+  
+  If a slug has been changed, we'll create a redirect from the old slug to the new one.
+  With `redirectedPost` you can resolve a post by the old slug.
+  
+  This can be used to redirect a user to the new post slug (via `redirectedPost.slug`).
+  """
+  redirectedPost(slug: String!): Post
   """
   Returns a post by a previous slug. It does not resolve a post by its current slug.
   
@@ -4202,6 +4347,7 @@ input PublicationDraftConnectionFilter {
 type PublicationFeatures {
   """Audio player for blog posts."""
   audioBlog: AudioBlogFeature! @deprecated(reason: "Audio Blogs are not supported anymore. This field will be removed 18/04/23")
+  audioBlog: AudioBlogFeature! @deprecated(reason: "Audio Blogs are not supported anymore. This field will be removed 18/04/23")
   """Individual styling for the publication."""
   customCSS: CustomCSSFeature!
   """GPT Bot crawler to index the publication."""
@@ -4210,6 +4356,8 @@ type PublicationFeatures {
   headlessCMS: HeadlessCMSFeature!
   """Newsletter feature for the publication which adds a `/newsletter` route for collecting subscribers and allows sending out newsletters."""
   newsletter: NewsletterFeature!
+  """Flag to denote if publication is a pro team's publication."""
+  proTeam: ProTeamFeature!
   """Flag to denote if publication is a pro team's publication."""
   proTeam: ProTeamFeature!
   """Show the read time for blog posts."""
@@ -4233,12 +4381,16 @@ type PublicationIntegrations {
   fathomSiteID: String
   """FB Pixel ID for integration with Facebook Pixel."""
   fbPixelID: String
+  """Google Tag Manager ID for integration with Google Tag Manager."""
+  gTagManagerID: String
   """Google Analytics Tracking ID for integration with Google Analytics."""
   gaTrackingID: String
   """Google Tag Manager ID for integration with Google Tag Manager."""
   gTagManagerID: String
   """Hotjar Site ID for integration with Hotjar."""
   hotjarSiteID: String
+  """Koala Public Key for integration with Koala."""
+  koalaPublicKey: String
   """Koala Public Key for integration with Koala."""
   koalaPublicKey: String
   """Matomo Site ID for integration with Matomo Analytics."""
@@ -4249,6 +4401,8 @@ type PublicationIntegrations {
   msClarityID: String
   """A flag indicating if the custom domain is enabled for integration with Plausible Analytics."""
   plausibleAnalyticsEnabled: Boolean
+  """The share ID for the Hashnode-provided Umami analytics instance."""
+  umamiShareId: String
   """The share ID for the Hashnode-provided Umami analytics instance."""
   umamiShareId: String
   """The ID for the Hashnode-provided Umami analytics instance."""
@@ -4296,8 +4450,12 @@ enum PublicationLayout {
 type PublicationLinks {
   """Bluesky URL of the publication."""
   bluesky: String
+  """Bluesky URL of the publication."""
+  bluesky: String
   """Daily.dev URL of the publication."""
   dailydev: String
+  """Facebook URL of the publication."""
+  facebook: String
   """Facebook URL of the publication."""
   facebook: String
   """GitHub URL of the publication."""
@@ -4365,6 +4523,7 @@ type PublicationNavbarItem {
   """The static page added to the navbar item."""
   page: StaticPage
   """The order of the navbar item."""
+  priority: Int @deprecated(reason: "Navbar items are already returned in the correct order. Priority value is not needed and might be 0 in most cases.")
   priority: Int @deprecated(reason: "Navbar items are already returned in the correct order. Priority value is not needed and might be 0 in most cases.")
   """The series added to the navbar item."""
   series: Series
@@ -4540,6 +4699,55 @@ type PublishDraftPayload {
   post: Post
 }
 
+type PublicationViewEdge implements Edge {
+  cursor: String!
+  node: Views!
+}
+
+type PublicationVisitorsEdge implements Edge {
+  cursor: String!
+  node: Visitors!
+}
+
+input PublishDocumentationApiReferenceInput {
+  guideSlug: String!
+  projectId: ID!
+}
+
+type PublishDocumentationApiReferencePayload {
+  guide: DocumentationApiReference
+}
+
+input PublishDocumentationGuideInput {
+  guideSlug: String!
+  projectId: ID!
+}
+
+type PublishDocumentationGuidePayload {
+  guide: DocumentationGuide
+}
+
+input PublishDocumentationPageDraftInput {
+  guideSlug: String!
+  pageId: ID!
+  projectId: ID!
+}
+
+type PublishDocumentationPageDraftPayload {
+  guide: DocumentationGuide
+  page: DocumentationPage
+}
+
+input PublishDraftInput {
+  """The id of the draft that should be published"""
+  draftId: ObjectId!
+}
+
+type PublishDraftPayload {
+  """The newly created post based on the draft"""
+  post: Post
+}
+
 """Contains information about the post to be published."""
 input PublishPostInput {
   """
@@ -4582,6 +4790,11 @@ input PublishPostInput {
   https://github.com/Hashnode/support/blob/main/misc/tags.json
   """
   tags: [PublishPostTagInput!]
+  """
+  A list of tags to add to the post. You can get a list of popular tags available on Hashnode here.
+  https://github.com/Hashnode/support/blob/main/misc/tags.json
+  """
+  tags: [PublishPostTagInput!]
   """The title of the post."""
   title: String!
 }
@@ -4595,6 +4808,7 @@ input PublishPostSettingsInput {
   delisted: Boolean
   """A flag to indicate if the post contains table of content"""
   enableTableOfContent: Boolean
+  """Whether to send a newsletter for this post."""
   """Whether to send a newsletter for this post."""
   isNewsletterActivated: Boolean
   """A flag to indicate if the post is scheduled."""
@@ -4628,6 +4842,9 @@ type Query {
   checkCustomDomainAvailability(input: CheckCustomDomainAvailabilityInput!): CheckCustomDomainAvailabilityResult!
   checkSubdomainAvailability(subdomain: String!): CheckSubdomainAvailabilityResult!
   documentationProject(host: String, id: ID): DocumentationProject
+  checkCustomDomainAvailability(input: CheckCustomDomainAvailabilityInput!): CheckCustomDomainAvailabilityResult!
+  checkSubdomainAvailability(subdomain: String!): CheckSubdomainAvailabilityResult!
+  documentationProject(host: String, id: ID): DocumentationProject
   """
   Returns a draft by ID.
   Draft is a post that is not published yet.
@@ -4650,6 +4867,11 @@ type Query {
   ): FeedPostConnection!
   """Returns the current authenticated user. Only available to the authenticated user."""
   me: MyUser!
+  """Returns post by ID. Can be used to render post page on blog."""
+  post(
+    """The ID of the post to be returned."""
+    id: ID!
+  ): Post
   """Returns post by ID. Can be used to render post page on blog."""
   post(
     """The ID of the post to be returned."""
@@ -4710,6 +4932,15 @@ type ReadTimeFeature implements Feature {
   isEnabled: Boolean!
 }
 
+input RecommendPublicationsInput {
+  recommendedPublicationIds: [ID!]!
+  recommendingPublicationId: ID!
+}
+
+type RecommendPublicationsPayload {
+  recommendedPublications: [UserRecommendedPublicationEdge!]
+}
+
 """Contains a publication and a cursor for pagination."""
 type RecommendedPublicationEdge implements Edge {
   """A cursor for use in pagination."""
@@ -4731,10 +4962,185 @@ type RedirectionRule implements Node {
   """The destination URL of the redirection rule."""
   destination: URL!
   id: ID!
+  destination: URL!
+  id: ID!
   """The source URL of the redirection rule."""
   source: String!
   """The type of the redirection rule."""
   type: HttpRedirectionType!
+}
+
+"""Input to reinvite a user to a publication."""
+input ReinviteUserToPublicationInput {
+  """The ID of the invitation to resend."""
+  inviteId: ID!
+  """The publication ID to resend the invitation from."""
+  publicationId: ID!
+}
+
+"""Response to reinviting a user to a publication."""
+type ReinviteUserToPublicationPayload {
+  """Signifies if the mutation was successful."""
+  success: Boolean!
+}
+
+input RelativeTimeRange {
+  """The number of time periods to go back in time."""
+  n: Int!
+  """The type of time range to be used."""
+  relative: TimePeriod!
+}
+
+input RemoveCommentInput {
+  id: ID!
+}
+
+type RemoveCommentPayload {
+  comment: Comment
+}
+
+input RemoveDocumentationGuideInput {
+  guideSlug: String!
+  projectId: ID!
+}
+
+type RemoveDocumentationGuidePayload {
+  guide: DocumentationGuideItem
+}
+
+"""The input for removing a prompt from the AI search"""
+input RemoveDocumentationProjectAIPromptInput {
+  projectId: ID!
+  promptId: ID!
+}
+
+"""Response to removing a prompt from the AI search"""
+type RemoveDocumentationProjectAIPromptPayload {
+  project: DocumentationProject!
+}
+
+input RemoveDocumentationProjectCustomDomainInput {
+  projectId: ID!
+}
+
+type RemoveDocumentationProjectCustomDomainPayload {
+  project: DocumentationProject
+}
+
+"""The input for removing a documentation project."""
+input RemoveDocumentationProjectInput {
+  """The ID of the documentation project that should be removed."""
+  projectId: ID!
+}
+
+"""The input for the removal of a member from a documentation"""
+input RemoveDocumentationProjectMemberInput {
+  projectId: ID!
+  userId: ID!
+}
+
+type RemoveDocumentationProjectMemberPayload {
+  project: DocumentationProject
+  removedMember: DocumentationProjectMember
+}
+
+"""The payload for removing a documentation project."""
+type RemoveDocumentationProjectPayload {
+  """The documentation project that was removed."""
+  project: DocumentationProject
+}
+
+input RemoveDocumentationSidebarItemInput {
+  guideSlug: String!
+  itemId: ID!
+  projectId: ID!
+}
+
+type RemoveDocumentationSidebarItemPayload {
+  guide: DocumentationGuide
+}
+
+input RemovePostInput {
+  """The ID of the post to remove."""
+  id: ID!
+}
+
+type RemovePostPayload {
+  """The deleted post."""
+  post: Post
+}
+
+"""Input to remove a user from a publication."""
+input RemovePublicationMemberInput {
+  """The publication ID the user is a member of."""
+  publicationId: ID!
+  """The username of the user to remove from the publication."""
+  username: String!
+}
+
+"""Response to removing a user from a publication."""
+type RemovePublicationMemberPayload {
+  """Returns the removed publication member."""
+  member: PublicationMember!
+}
+
+input RemoveRecommendationInput {
+  recommendedPublicationId: ID!
+  recommendingPublicationId: ID!
+}
+
+type RemoveRecommendationPayload {
+  recommendedPublication: Publication!
+}
+
+input RemoveRedirectionRuleInput {
+  id: ID!
+  publicationId: ID!
+}
+
+type RemoveRedirectionRulePayload {
+  redirectionRule: RedirectionRule!
+}
+
+input RemoveReplyInput {
+  commentId: ID!
+  replyId: ID!
+}
+
+type RemoveReplyPayload {
+  reply: Reply
+}
+
+input RemoveSeriesInput {
+  """The id of the series to remove."""
+  id: ID!
+}
+
+type RemoveSeriesPayload {
+  """Returns the updated series."""
+  series: Series!
+}
+
+input RenameDocumentationGuideItemInput {
+  guideSlug: String!
+  name: String!
+  projectId: ID!
+}
+
+type RenameDocumentationGuideItemPayload {
+  guide: DocumentationGuideItem
+}
+
+input RenameDocumentationSidebarItemInput {
+  guideSlug: String!
+  itemId: ID!
+  label: String!
+  projectId: ID!
+}
+
+type RenameDocumentationSidebarItemPayload {
+  guide: DocumentationGuide
+  item: DocumentationSidebarItem
 }
 
 """Input to reinvite a user to a publication."""
@@ -5096,11 +5502,19 @@ enum Scope {
   delete_draft
   docs_admin_or_owner
   docs_owner
+  delete_draft
+  docs_admin_or_owner
+  docs_owner
   import_subscribers_to_publication
   invited_docs_admin
   invited_team_user
   move_draft
+  invited_docs_admin
+  invited_team_user
+  move_draft
   publication_admin
+  publication_author
+  publication_member
   publication_author
   publication_member
   publish_comment
@@ -5109,13 +5523,18 @@ enum Scope {
   publish_reply
   recommend_publications
   reject_draft_submission
+  reject_draft_submission
   remove_comment
   remove_reply
+  restore_post
   restore_post
   signup
   submit_draft
   team_hashnode
+  submit_draft
+  team_hashnode
   update_comment
+  update_draft
   update_draft
   update_post
   update_reply
@@ -5123,8 +5542,13 @@ enum Scope {
   write_ai_search_prompt
   write_draft
   write_draft_revision
+  write_ai_search_prompt
+  write_draft
+  write_draft_revision
   write_post
   write_series
+  write_static_page
+  write_widget
   write_static_page
   write_widget
 }
@@ -5255,8 +5679,22 @@ type SetDocumentationSidebarItemVisibilityPayload {
   item: DocumentationSidebarItem
 }
 
+input SetDocumentationSidebarItemVisibilityInput {
+  guideSlug: String!
+  itemId: ID!
+  projectId: ID!
+  visibility: DocumentationSidebarItemVisibility!
+}
+
+type SetDocumentationSidebarItemVisibilityPayload {
+  guide: DocumentationGuide
+  item: DocumentationSidebarItem
+}
+
 """Available social media links."""
 type SocialMediaLinks {
+  """The user's Bluesky profile."""
+  bluesky: String
   """The user's Bluesky profile."""
   bluesky: String
   """The user's Facebook profile."""
@@ -5344,6 +5782,22 @@ input SubscribeToNewsletterInput {
 
 type SubscribeToNewsletterPayload {
   status: NewsletterSubscribeStatus
+}
+
+"""The input for syncing API reference definitions"""
+input SyncDocumentationProjectApiDefinitionInput {
+  """The ID of the docs API reference"""
+  apiReferenceId: ID!
+  """The ID of the documentation project"""
+  projectId: ID!
+  """The ID of the reference version"""
+  versionId: ID!
+}
+
+"""The response to syncing documentation project API Reference definition"""
+type SyncDocumentationProjectApiDefinitionPayload {
+  """Signifies if the mutation was successful."""
+  success: Boolean!
 }
 
 """The input for syncing API reference definitions"""
@@ -5878,6 +6332,7 @@ type User implements IUser & Node {
   followersCount: Int!
   """
   Whether or not the authenticated user follows this user.
+  Whether or not the authenticated user follows this user.
   Returns false if the authenticated user this user.
   """
   following: Boolean!
@@ -5891,6 +6346,7 @@ type User implements IUser & Node {
     pageSize: Int!
   ): UserConnection!
   """
+  Whether or not this user follows the authenticated user.
   Whether or not this user follows the authenticated user.
   Returns false if the authenticated user this user.
   """
@@ -5922,6 +6378,8 @@ type User implements IUser & Node {
     filter: UserPublicationsConnectionFilter
     """The maximum number of publications to return in a batch."""
     first: Int!
+    """The sort direction for the publication."""
+    sortBy: UserPublicationsSort = DATE_CREATED_DESC
     """The sort direction for the publication."""
     sortBy: UserPublicationsSort = DATE_CREATED_DESC
   ): UserPublicationsConnection!
@@ -5974,12 +6432,44 @@ type UserDraftEdge implements Edge {
   node: Draft!
 }
 
+"""Drafts that belong to a user."""
+type UserDraftConnection implements Connection {
+  """A list of edges."""
+  edges: [UserDraftEdge!]!
+  """Generic information to aid in pagination."""
+  pageInfo: PageInfo!
+  """The total number of documents in the connection."""
+  totalDocuments: Int!
+}
+
+"""A generic type which holds a draft during pagination."""
+type UserDraftEdge implements Edge {
+  """A cursor for use in pagination."""
+  cursor: String!
+  """The item at the end of UserDraftEdge."""
+  node: Draft!
+}
+
 """Contains a node of type user and cursor for pagination."""
 type UserEdge implements Edge {
   """The cursor for use in pagination."""
   cursor: String!
   """The node containing User information"""
   node: User!
+}
+
+input UserInviteInput {
+  """The email of the user to invite to the publication."""
+  email: String
+  """The role to assign to the user in the publication."""
+  role: UserPublicationInviteRole!
+  """Username of the user to invite to the publication."""
+  username: String
+}
+
+enum UserInviteStatus {
+  INVITED
+  NOT_INVITED
 }
 
 input UserInviteInput {
@@ -6122,6 +6612,18 @@ enum UserPublicationsSort {
   DATE_UPDATED_DESC
 }
 
+"""Sorting for the publications of a user."""
+enum UserPublicationsSort {
+  """Oldest publication first."""
+  DATE_CREATED_ASC
+  """Newest publication first."""
+  DATE_CREATED_DESC
+  """Recently updated publication last."""
+  DATE_UPDATED_ASC
+  """Recently updated publication first."""
+  DATE_UPDATED_DESC
+}
+
 type UserRecommendedPublicationEdge {
   """The publication that is recommended by the publication this connection originates from."""
   node: Publication!
@@ -6187,6 +6689,18 @@ Shows total views on blogs if enabled.
 type ViewCountFeature implements Feature {
   """A flag indicating if the view count feature is enabled or not."""
   isEnabled: Boolean!
+}
+
+interface Views implements Node {
+  id: ID!
+  """The aggregated views."""
+  total: Int!
+}
+
+interface Visitors implements Node {
+  id: ID!
+  """The aggregated number of visitors."""
+  total: Int!
 }
 
 interface Views implements Node {

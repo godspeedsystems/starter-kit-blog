@@ -3,17 +3,17 @@ import { NextComponentType, NextPageContext } from 'next';
 import { withUrqlClient, WithUrqlProps } from 'next-urql';
 import 'tailwindcss/tailwind.css'
 
-import '../styles/index.css';
 import { GlobalFontVariables } from '../components/fonts';
 import { getUrqlClientConfig } from '../lib/api/client';
+import '../styles/index.css';
 
 import { Fragment } from 'react';
 
 function MyApp({ Component, pageProps }: AppInitialProps<any> & WithUrqlProps) {
 	return (
 		<Fragment>
-			 <GlobalFontVariables />
-			 <Component {...pageProps} />
+			<GlobalFontVariables />
+			<Component {...pageProps} />
 		</Fragment>
 	);
 }

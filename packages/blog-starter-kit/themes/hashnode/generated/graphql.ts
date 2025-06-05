@@ -149,6 +149,16 @@ export type AddReplyPayload = {
   reply?: Maybe<Reply>;
 };
 
+export type AddReplyInput = {
+  commentId: Scalars['ID']['input'];
+  contentMarkdown: Scalars['String']['input'];
+};
+
+export type AddReplyPayload = {
+  __typename?: 'AddReplyPayload';
+  reply?: Maybe<Reply>;
+};
+
 /**
  * Contains the flag indicating if the audio blog feature is enabled or not.
  * User can enable or disable the audio blog feature from the publication settings.
@@ -230,6 +240,76 @@ export type BetaFeature = Node & {
   title?: Maybe<Scalars['String']['output']>;
   /** The url of the beta feature. */
   url?: Maybe<Scalars['String']['output']>;
+};
+
+export type CancelScheduledDraftInput = {
+  /** The Draft ID of the scheduled draft. */
+  draftId: Scalars['ID']['input'];
+};
+
+export type CancelScheduledDraftPayload = {
+  __typename?: 'CancelScheduledDraftPayload';
+  /** Payload returned in response of cancel scheduled post mutation. */
+  scheduledPost: ScheduledPost;
+};
+
+/** Input to change the role of a user in a publication. */
+export type ChangePublicationMemberRoleInput = {
+  /** The publication ID the user is a member of. */
+  publicationId: Scalars['ID']['input'];
+  /** The role of the user in the publication. */
+  role: UserPublicationRole;
+  /** The username of the user to change the role for. */
+  username: Scalars['String']['input'];
+};
+
+/** Response to changing the role of a user in a publication. */
+export type ChangePublicationMemberRolePayload = {
+  __typename?: 'ChangePublicationMemberRolePayload';
+  /** The updated publication member. */
+  member: PublicationMember;
+};
+
+/** Input to change the privacy state of a user in a publication. */
+export type ChangePublicationMemberVisibilityInput = {
+  /**
+   * The privacy state of the user in the publication.
+   * PRIVATE members are not visible on the members page while PUBLIC members are visible.
+   */
+  privacyState: PublicationMemberPrivacyState;
+  /** The publication ID the user is a member of. */
+  publicationId: Scalars['ID']['input'];
+  /** The username of the user to change the role for. */
+  username: Scalars['String']['input'];
+};
+
+/** Response to changing the privacy state of a user in a publication. */
+export type ChangePublicationMemberVisibilityPayload = {
+  __typename?: 'ChangePublicationMemberVisibilityPayload';
+  /** The updated publication member. */
+  member: PublicationMember;
+};
+
+export type CheckCustomDomainAvailabilityInput = {
+  domain: Scalars['String']['input'];
+  withWWWRedirect: Scalars['Boolean']['input'];
+};
+
+export type CheckCustomDomainAvailabilityResult = {
+  __typename?: 'CheckCustomDomainAvailabilityResult';
+  domainAvailable: Scalars['Boolean']['output'];
+};
+
+export type CheckSubdomainAvailabilityResult = {
+  __typename?: 'CheckSubdomainAvailabilityResult';
+  subdomainAvailable: Scalars['Boolean']['output'];
+};
+
+/** Contains the flag indicating if the collaboration feature is enabled or not. */
+export type CollaborationFeature = Feature & {
+  __typename?: 'CollaborationFeature';
+  /** A flag indicating if the collaboration feature is enabled or not. */
+  isEnabled: Scalars['Boolean']['output'];
 };
 
 export type CancelScheduledDraftInput = {
@@ -396,6 +476,510 @@ export type Content = {
   /** The text version from sanitized html content. HTML tags are stripped and only text is returned. */
   text: Scalars['String']['output'];
 };
+
+/** Two letter ISO 3166-1 alpha-2 country code. */
+export enum CountryCodeAlpha2 {
+  /** Andorra */
+  Ad = 'AD',
+  /** United Arab Emirates */
+  Ae = 'AE',
+  /** Afghanistan */
+  Af = 'AF',
+  /** Antigua and Barbuda */
+  Ag = 'AG',
+  /** Anguilla */
+  Ai = 'AI',
+  /** Albania */
+  Al = 'AL',
+  /** Armenia */
+  Am = 'AM',
+  /** Angola */
+  Ao = 'AO',
+  /** Antarctica */
+  Aq = 'AQ',
+  /** Argentina */
+  Ar = 'AR',
+  /** American Samoa */
+  As = 'AS',
+  /** Austria */
+  At = 'AT',
+  /** Australia */
+  Au = 'AU',
+  /** Aruba */
+  Aw = 'AW',
+  /** Åland Islands */
+  Ax = 'AX',
+  /** Azerbaijan */
+  Az = 'AZ',
+  /** Bosnia and Herzegovina */
+  Ba = 'BA',
+  /** Barbados */
+  Bb = 'BB',
+  /** Bangladesh */
+  Bd = 'BD',
+  /** Belgium */
+  Be = 'BE',
+  /** Burkina Faso */
+  Bf = 'BF',
+  /** Bulgaria */
+  Bg = 'BG',
+  /** Bahrain */
+  Bh = 'BH',
+  /** Burundi */
+  Bi = 'BI',
+  /** Benin */
+  Bj = 'BJ',
+  /** Saint Barthélemy */
+  Bl = 'BL',
+  /** Bermuda */
+  Bm = 'BM',
+  /** Brunei Darussalam */
+  Bn = 'BN',
+  /** Bolivia (Plurinational State of) */
+  Bo = 'BO',
+  /** Bonaire, Sint Eustatius and Saba */
+  Bq = 'BQ',
+  /** Brazil */
+  Br = 'BR',
+  /** Bahamas */
+  Bs = 'BS',
+  /** Bhutan */
+  Bt = 'BT',
+  /** Bouvet Island */
+  Bv = 'BV',
+  /** Botswana */
+  Bw = 'BW',
+  /** Belarus */
+  By = 'BY',
+  /** Belize */
+  Bz = 'BZ',
+  /** Canada */
+  Ca = 'CA',
+  /** Cocos (Keeling) Islands */
+  Cc = 'CC',
+  /** Congo, Democratic Republic of the */
+  Cd = 'CD',
+  /** Central African Republic */
+  Cf = 'CF',
+  /** Congo */
+  Cg = 'CG',
+  /** Switzerland */
+  Ch = 'CH',
+  /** Côte d'Ivoire */
+  Ci = 'CI',
+  /** Cook Islands */
+  Ck = 'CK',
+  /** Chile */
+  Cl = 'CL',
+  /** Cameroon */
+  Cm = 'CM',
+  /** China */
+  Cn = 'CN',
+  /** Colombia */
+  Co = 'CO',
+  /** Costa Rica */
+  Cr = 'CR',
+  /** Cuba */
+  Cu = 'CU',
+  /** Cabo Verde */
+  Cv = 'CV',
+  /** Curaçao */
+  Cw = 'CW',
+  /** Christmas Island */
+  Cx = 'CX',
+  /** Cyprus */
+  Cy = 'CY',
+  /** Czechia */
+  Cz = 'CZ',
+  /** Germany */
+  De = 'DE',
+  /** Djibouti */
+  Dj = 'DJ',
+  /** Denmark */
+  Dk = 'DK',
+  /** Dominica */
+  Dm = 'DM',
+  /** Dominican Republic */
+  Do = 'DO',
+  /** Algeria */
+  Dz = 'DZ',
+  /** Ecuador */
+  Ec = 'EC',
+  /** Estonia */
+  Ee = 'EE',
+  /** Egypt */
+  Eg = 'EG',
+  /** Western Sahara */
+  Eh = 'EH',
+  /** Eritrea */
+  Er = 'ER',
+  /** Spain */
+  Es = 'ES',
+  /** Ethiopia */
+  Et = 'ET',
+  /** Finland */
+  Fi = 'FI',
+  /** Fiji */
+  Fj = 'FJ',
+  /** Falkland Islands (Malvinas) */
+  Fk = 'FK',
+  /** Micronesia (Federated States of) */
+  Fm = 'FM',
+  /** Faroe Islands */
+  Fo = 'FO',
+  /** France */
+  Fr = 'FR',
+  /** Gabon */
+  Ga = 'GA',
+  /** United Kingdom of Great Britain and Northern Ireland */
+  Gb = 'GB',
+  /** Grenada */
+  Gd = 'GD',
+  /** Georgia */
+  Ge = 'GE',
+  /** French Guiana */
+  Gf = 'GF',
+  /** Guernsey */
+  Gg = 'GG',
+  /** Ghana */
+  Gh = 'GH',
+  /** Gibraltar */
+  Gi = 'GI',
+  /** Greenland */
+  Gl = 'GL',
+  /** Gambia */
+  Gm = 'GM',
+  /** Guinea */
+  Gn = 'GN',
+  /** Guadeloupe */
+  Gp = 'GP',
+  /** Equatorial Guinea */
+  Gq = 'GQ',
+  /** Greece */
+  Gr = 'GR',
+  /** South Georgia and the South Sandwich Islands */
+  Gs = 'GS',
+  /** Guatemala */
+  Gt = 'GT',
+  /** Guam */
+  Gu = 'GU',
+  /** Guinea-Bissau */
+  Gw = 'GW',
+  /** Guyana */
+  Gy = 'GY',
+  /** Hong Kong */
+  Hk = 'HK',
+  /** Heard Island and McDonald Islands */
+  Hm = 'HM',
+  /** Honduras */
+  Hn = 'HN',
+  /** Croatia */
+  Hr = 'HR',
+  /** Haiti */
+  Ht = 'HT',
+  /** Hungary */
+  Hu = 'HU',
+  /** Indonesia */
+  Id = 'ID',
+  /** Ireland */
+  Ie = 'IE',
+  /** Israel */
+  Il = 'IL',
+  /** Isle of Man */
+  Im = 'IM',
+  /** India */
+  In = 'IN',
+  /** British Indian Ocean Territory */
+  Io = 'IO',
+  /** Iraq */
+  Iq = 'IQ',
+  /** Iran (Islamic Republic of) */
+  Ir = 'IR',
+  /** Iceland */
+  Is = 'IS',
+  /** Italy */
+  It = 'IT',
+  /** Jersey */
+  Je = 'JE',
+  /** Jamaica */
+  Jm = 'JM',
+  /** Jordan */
+  Jo = 'JO',
+  /** Japan */
+  Jp = 'JP',
+  /** Kenya */
+  Ke = 'KE',
+  /** Kyrgyzstan */
+  Kg = 'KG',
+  /** Cambodia */
+  Kh = 'KH',
+  /** Kiribati */
+  Ki = 'KI',
+  /** Comoros */
+  Km = 'KM',
+  /** Saint Kitts and Nevis */
+  Kn = 'KN',
+  /** Korea (Democratic People's Republic of) */
+  Kp = 'KP',
+  /** Korea, Republic of */
+  Kr = 'KR',
+  /** Kuwait */
+  Kw = 'KW',
+  /** Cayman Islands */
+  Ky = 'KY',
+  /** Kazakhstan */
+  Kz = 'KZ',
+  /** Lao People's Democratic Republic */
+  La = 'LA',
+  /** Lebanon */
+  Lb = 'LB',
+  /** Saint Lucia */
+  Lc = 'LC',
+  /** Liechtenstein */
+  Li = 'LI',
+  /** Sri Lanka */
+  Lk = 'LK',
+  /** Liberia */
+  Lr = 'LR',
+  /** Lesotho */
+  Ls = 'LS',
+  /** Lithuania */
+  Lt = 'LT',
+  /** Luxembourg */
+  Lu = 'LU',
+  /** Latvia */
+  Lv = 'LV',
+  /** Libya */
+  Ly = 'LY',
+  /** Morocco */
+  Ma = 'MA',
+  /** Monaco */
+  Mc = 'MC',
+  /** Moldova, Republic of */
+  Md = 'MD',
+  /** Montenegro */
+  Me = 'ME',
+  /** Saint Martin (French part) */
+  Mf = 'MF',
+  /** Madagascar */
+  Mg = 'MG',
+  /** Marshall Islands */
+  Mh = 'MH',
+  /** North Macedonia */
+  Mk = 'MK',
+  /** Mali */
+  Ml = 'ML',
+  /** Myanmar */
+  Mm = 'MM',
+  /** Mongolia */
+  Mn = 'MN',
+  /** Macao */
+  Mo = 'MO',
+  /** Northern Mariana Islands */
+  Mp = 'MP',
+  /** Martinique */
+  Mq = 'MQ',
+  /** Mauritania */
+  Mr = 'MR',
+  /** Montserrat */
+  Ms = 'MS',
+  /** Malta */
+  Mt = 'MT',
+  /** Mauritius */
+  Mu = 'MU',
+  /** Maldives */
+  Mv = 'MV',
+  /** Malawi */
+  Mw = 'MW',
+  /** Mexico */
+  Mx = 'MX',
+  /** Malaysia */
+  My = 'MY',
+  /** Mozambique */
+  Mz = 'MZ',
+  /** Namibia */
+  Na = 'NA',
+  /** New Caledonia */
+  Nc = 'NC',
+  /** Niger */
+  Ne = 'NE',
+  /** Norfolk Island */
+  Nf = 'NF',
+  /** Nigeria */
+  Ng = 'NG',
+  /** Nicaragua */
+  Ni = 'NI',
+  /** Netherlands */
+  Nl = 'NL',
+  /** Norway */
+  No = 'NO',
+  /** Nepal */
+  Np = 'NP',
+  /** Nauru */
+  Nr = 'NR',
+  /** Niue */
+  Nu = 'NU',
+  /** New Zealand */
+  Nz = 'NZ',
+  /** Oman */
+  Om = 'OM',
+  /** Panama */
+  Pa = 'PA',
+  /** Peru */
+  Pe = 'PE',
+  /** French Polynesia */
+  Pf = 'PF',
+  /** Papua New Guinea */
+  Pg = 'PG',
+  /** Philippines */
+  Ph = 'PH',
+  /** Pakistan */
+  Pk = 'PK',
+  /** Poland */
+  Pl = 'PL',
+  /** Saint Pierre and Miquelon */
+  Pm = 'PM',
+  /** Pitcairn */
+  Pn = 'PN',
+  /** Puerto Rico */
+  Pr = 'PR',
+  /** Palestine, State of */
+  Ps = 'PS',
+  /** Portugal */
+  Pt = 'PT',
+  /** Palau */
+  Pw = 'PW',
+  /** Paraguay */
+  Py = 'PY',
+  /** Qatar */
+  Qa = 'QA',
+  /** Réunion */
+  Re = 'RE',
+  /** Romania */
+  Ro = 'RO',
+  /** Serbia */
+  Rs = 'RS',
+  /** Russian Federation */
+  Ru = 'RU',
+  /** Rwanda */
+  Rw = 'RW',
+  /** Saudi Arabia */
+  Sa = 'SA',
+  /** Solomon Islands */
+  Sb = 'SB',
+  /** Seychelles */
+  Sc = 'SC',
+  /** Sudan */
+  Sd = 'SD',
+  /** Sweden */
+  Se = 'SE',
+  /** Singapore */
+  Sg = 'SG',
+  /** Saint Helena, Ascension and Tristan da Cunha */
+  Sh = 'SH',
+  /** Slovenia */
+  Si = 'SI',
+  /** Svalbard and Jan Mayen */
+  Sj = 'SJ',
+  /** Slovakia */
+  Sk = 'SK',
+  /** Sierra Leone */
+  Sl = 'SL',
+  /** San Marino */
+  Sm = 'SM',
+  /** Senegal */
+  Sn = 'SN',
+  /** Somalia */
+  So = 'SO',
+  /** Suriname */
+  Sr = 'SR',
+  /** South Sudan */
+  Ss = 'SS',
+  /** Sao Tome and Principe */
+  St = 'ST',
+  /** El Salvador */
+  Sv = 'SV',
+  /** Sint Maarten (Dutch part) */
+  Sx = 'SX',
+  /** Syrian Arab Republic */
+  Sy = 'SY',
+  /** Eswatini */
+  Sz = 'SZ',
+  /** Turks and Caicos Islands */
+  Tc = 'TC',
+  /** Chad */
+  Td = 'TD',
+  /** French Southern Territories */
+  Tf = 'TF',
+  /** Togo */
+  Tg = 'TG',
+  /** Thailand */
+  Th = 'TH',
+  /** Tajikistan */
+  Tj = 'TJ',
+  /** Tokelau */
+  Tk = 'TK',
+  /** Timor-Leste */
+  Tl = 'TL',
+  /** Turkmenistan */
+  Tm = 'TM',
+  /** Tunisia */
+  Tn = 'TN',
+  /** Tonga */
+  To = 'TO',
+  /** Turkey */
+  Tr = 'TR',
+  /** Trinidad and Tobago */
+  Tt = 'TT',
+  /** Tuvalu */
+  Tv = 'TV',
+  /** Taiwan, Province of China */
+  Tw = 'TW',
+  /** Tanzania, United Republic of */
+  Tz = 'TZ',
+  /** Ukraine */
+  Ua = 'UA',
+  /** Uganda */
+  Ug = 'UG',
+  /** United States Minor Outlying Islands */
+  Um = 'UM',
+  /** United States of America */
+  Us = 'US',
+  /** Uruguay */
+  Uy = 'UY',
+  /** Uzbekistan */
+  Uz = 'UZ',
+  /** Holy See */
+  Va = 'VA',
+  /** Saint Vincent and the Grenadines */
+  Vc = 'VC',
+  /** Venezuela (Bolivarian Republic of) */
+  Ve = 'VE',
+  /** Virgin Islands (British) */
+  Vg = 'VG',
+  /** Virgin Islands (U.S.) */
+  Vi = 'VI',
+  /** Viet Nam */
+  Vn = 'VN',
+  /** Vanuatu */
+  Vu = 'VU',
+  /** Wallis and Futuna */
+  Wf = 'WF',
+  /** Samoa */
+  Ws = 'WS',
+  /** Yemen */
+  Ye = 'YE',
+  /** Mayotte */
+  Yt = 'YT',
+  /** South Africa */
+  Za = 'ZA',
+  /** Zambia */
+  Zm = 'ZM',
+  /** Zimbabwe */
+  Zw = 'ZW',
+  /** Unknown */
+  Zz = 'ZZ'
+}
 
 /** Two letter ISO 3166-1 alpha-2 country code. */
 export enum CountryCodeAlpha2 {
@@ -1220,6 +1804,12 @@ export type CustomCssFeature = Feature & {
   /** CSS that is live. */
   published?: Maybe<CustomCss>;
 };
+
+export enum CustomDomainStatus {
+  Invalid = 'INVALID',
+  Valid = 'VALID',
+  Verifying = 'VERIFYING'
+}
 
 export enum CustomDomainStatus {
   Invalid = 'INVALID',
@@ -2116,6 +2706,13 @@ export type DomainStatus = {
    * It is only present if the domain is verified.
    */
   verifiedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** A flag indicating the status of a publication domain */
+  status: CustomDomainStatus;
+  /**
+   * A timestamp indicating when the domain was verified.
+   * It is only present if the domain is verified.
+   */
+  verifiedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 /**
@@ -2134,6 +2731,8 @@ export type Draft = Node & {
   canonicalUrl?: Maybe<Scalars['String']['output']>;
   /**
    * Returns the user details of the co-authors of the post.
+   *
+   * Only available for team publications.
    *
    * Only available for team publications.
    */
@@ -2157,6 +2756,12 @@ export type Draft = Node & {
    * Only applicable to drafts in team publications.
    */
   isSubmittedForReview?: Maybe<Scalars['Boolean']['output']>;
+  /**
+   * Whether or not the draft has been submitted for review.
+   *
+   * Only applicable to drafts in team publications.
+   */
+  isSubmittedForReview?: Maybe<Scalars['Boolean']['output']>;
   /** Information about the last backup of the draft. */
   lastBackup?: Maybe<DraftBackup>;
   /** The date the draft last failed to back up. */
@@ -2170,7 +2775,14 @@ export type Draft = Node & {
   publishAs?: Maybe<User>;
   /** Returns the published post when the draft is published, returns null otherwise */
   publishedPost?: Maybe<Post>;
+  /** The publication the draft belongs to. */
+  publication?: Maybe<Publication>;
+  publishAs?: Maybe<User>;
+  /** Returns the published post when the draft is published, returns null otherwise */
+  publishedPost?: Maybe<Post>;
   readTimeInMinutes: Scalars['Int']['output'];
+  /** The date the draft is scheduled to be published. */
+  scheduledDate?: Maybe<Scalars['DateTime']['output']>;
   /** The date the draft is scheduled to be published. */
   scheduledDate?: Maybe<Scalars['DateTime']['output']>;
   /** SEO information of the draft. Contains title and description used in meta tags. */
@@ -2185,7 +2797,12 @@ export type Draft = Node & {
    * Returns list of tags added to the draft. Contains tag id, name, slug, etc.
    * @deprecated Use tagsV2 instead. Will be removed on 26/02/2024.
    */
+  /**
+   * Returns list of tags added to the draft. Contains tag id, name, slug, etc.
+   * @deprecated Use tagsV2 instead. Will be removed on 26/02/2024.
+   */
   tags: Array<Tag>;
+  tagsV2: Array<DraftTag>;
   tagsV2: Array<DraftTag>;
   /** The title of the draft. It would become the title of the post when published. */
   title?: Maybe<Scalars['String']['output']>;
@@ -2280,15 +2897,38 @@ export type DraftRevisionEdge = Edge & {
   node: DraftRevision;
 };
 
+export type DraftRevision = Node & {
+  __typename?: 'DraftRevision';
+  /** The name of the user who created the revision. */
+  authorName: Scalars['String']['output'];
+  /** The content of the draft revision. */
+  content: Content;
+  /** The time the revision has been created. */
+  createdAt: Scalars['DateTime']['output'];
+  /** The ID of the draft revision. */
+  id: Scalars['ID']['output'];
+};
+
+export type DraftRevisionEdge = Edge & {
+  __typename?: 'DraftRevisionEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** A node in the connection containing a draft revision. */
+  node: DraftRevision;
+};
+
 export type DraftSettings = {
   __typename?: 'DraftSettings';
   /** A flag to indicate if the comments are disabled for the post. */
   disableComments: Scalars['Boolean']['output'];
   /** Whether or not the post is hidden from the Hashnode community. */
+  /** Whether or not the post is hidden from the Hashnode community. */
   isDelisted: Scalars['Boolean']['output'];
   /** A flag to indicate if the cover image is shown below title of the post. Default position of cover is top of title. */
   stickCoverToBottom: Scalars['Boolean']['output'];
 };
+
+export type DraftTag = DraftBaseTag | Tag;
 
 export type DraftTag = DraftBaseTag | Tag;
 
@@ -2342,6 +2982,53 @@ export enum EmailImportStatus {
   /** Import was successful. New emails have been imported. */
   Success = 'SUCCESS'
 }
+
+/** User's email notification preferences. */
+export type EmailNotificationPreferences = {
+  __typename?: 'EmailNotificationPreferences';
+  /** Indicates if the user has opted in to receive activity notifications. */
+  activityNotifications: Scalars['Boolean']['output'];
+  /** Indicates if the user has opted in to receive general announcements. */
+  generalAnnouncements: Scalars['Boolean']['output'];
+  /** Indicates if the user has opted in to receive monthly blog performance stats. */
+  monthlyBlogStats: Scalars['Boolean']['output'];
+  /** Indicates if the user has opted in to receive new followers weekly. */
+  newFollowersWeekly: Scalars['Boolean']['output'];
+  /** Indicates if the user has opted in to receive the Hashnode Weekly newsletter. */
+  weeklyNewsletterEmails: Scalars['Boolean']['output'];
+};
+
+/** The input for enabling AI search for a documentation project */
+export type EnableDocumentationProjectAiSearchInput = {
+  /** The ID of the documentation project */
+  projectId: Scalars['ID']['input'];
+};
+
+/** The response to enabling AI search for a documentation project */
+export type EnableDocumentationProjectAiSearchPayload = {
+  __typename?: 'EnableDocumentationProjectAISearchPayload';
+  project?: Maybe<DocumentationProject>;
+};
+
+export type EnableDocumentationProjectHeadlessCmsInput = {
+  projectId: Scalars['ID']['input'];
+};
+
+export type EnableDocumentationProjectHeadlessCmsPayload = {
+  __typename?: 'EnableDocumentationProjectHeadlessCmsPayload';
+  project?: Maybe<DocumentationProject>;
+};
+
+/** Invitations that failed to be sent to the user */
+export type FailedInvite = {
+  __typename?: 'FailedInvite';
+  /** The email of the user that failed to invite. */
+  email?: Maybe<Scalars['String']['output']>;
+  /** The reason why the user failed to invite. */
+  errorMessage: Scalars['String']['output'];
+  /** The username of the user that failed to invite. */
+  username?: Maybe<Scalars['String']['output']>;
+};
 
 /** User's email notification preferences. */
 export type EmailNotificationPreferences = {
@@ -2936,7 +3623,9 @@ export type HeadlessCmsFeature = Feature & {
 
 export enum HttpRedirectionType {
   /** A permanent redirect that corresponds to the 302 HTTP status code. */
+  /** A permanent redirect that corresponds to the 302 HTTP status code. */
   Permanent = 'PERMANENT',
+  /** A temporary redirect that corresponds to the 301 HTTP status code. */
   /** A temporary redirect that corresponds to the 301 HTTP status code. */
   Temporary = 'TEMPORARY'
 }
@@ -3100,6 +3789,8 @@ export type IUser = {
   tagsFollowing: Array<Tag>;
   /** Returns list of tags from user's expertise. Shown on the user's profile. */
   techStack: UserTagsConnection;
+  /** Returns list of tags from user's expertise. Shown on the user's profile. */
+  techStack: UserTagsConnection;
   /** The username of the user. It is unique and tied with user's profile URL. Example - https://hashnode.com/@username */
   username: Scalars['String']['output'];
 };
@@ -3196,6 +3887,19 @@ export type MetaTagsInput = {
   image?: InputMaybe<Scalars['String']['input']>;
   /** The title of the post used in og:title for SEO. */
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type MoveDocumentationSidebarItemInput = {
+  guideSlug: Scalars['String']['input'];
+  itemId: Scalars['ID']['input'];
+  parentId?: InputMaybe<Scalars['ID']['input']>;
+  position?: InputMaybe<Scalars['Int']['input']>;
+  projectId: Scalars['ID']['input'];
+};
+
+export type MoveDocumentationSidebarItemPayload = {
+  __typename?: 'MoveDocumentationSidebarItemPayload';
+  guide?: Maybe<DocumentationGuide>;
 };
 
 export type MoveDocumentationSidebarItemInput = {
@@ -3337,7 +4041,53 @@ export type Mutation = {
   saveDocumentationPageDraftContent: SaveDocumentationPageDraftContentPayload;
   scheduleDraft: ScheduleDraftPayload;
   setDocumentationSidebarItemVisibility: SetDocumentationSidebarItemVisibilityPayload;
+  recommendPublications: RecommendPublicationsPayload;
+  /** Resends an invitation to a user to join a publication. The user must have been previously invited. Sends an email to the user. */
+  reinviteUserToPublication: ReinviteUserToPublicationPayload;
+  /** Removes a comment from a post. */
+  removeComment: RemoveCommentPayload;
+  removeDocumentationGuide: RemoveDocumentationGuidePayload;
+  /**
+   * Mutation to remove a documentation project.
+   * This will free the custom domain and subdomain and removes all guides and pages.
+   */
+  removeDocumentationProject: RemoveDocumentationProjectPayload;
+  /** Mutation to remove a prompt from the AI search */
+  removeDocumentationProjectAIPrompt: RemoveDocumentationProjectAiPromptPayload;
+  removeDocumentationProjectCustomDomain: RemoveDocumentationProjectCustomDomainPayload;
+  /** Mutation to remove a Member from a Documentation Project */
+  removeDocumentationProjectMember: RemoveDocumentationProjectMemberPayload;
+  removeDocumentationSidebarItem: RemoveDocumentationSidebarItemPayload;
+  /** Removes a post. */
+  removePost: RemovePostPayload;
+  /** Removes a user from a teams publication. */
+  removePublicationMember: RemovePublicationMemberPayload;
+  removeRecommendation: RemoveRecommendationPayload;
+  removeRedirectionRule: RemoveRedirectionRulePayload;
+  /** Removes a reply from a comment. */
+  removeReply: RemoveReplyPayload;
+  /** Removes a series. */
+  removeSeries: RemoveSeriesPayload;
+  renameDocumentationGuide: RenameDocumentationGuideItemPayload;
+  renameDocumentationSidebarItem: RenameDocumentationSidebarItemPayload;
+  /** Reschedule a draft. */
+  rescheduleDraft: RescheduleDraftPayload;
+  resendWebhookRequest: ResendWebhookRequestPayload;
+  /** Restores a deleted post. */
+  restorePost: RestorePostPayload;
+  retryDocumentationProjectCustomDomainVerification: RetryDocumentationProjectCustomDomainVerificationPayload;
+  /** Mutation to revoke documentation project invite */
+  revokeInviteToDocumentationProject: RevokeInviteToDocumentationProjectPayload;
+  /** Revokes a user invitation that was sent to join a publication. */
+  revokeUserInviteToPublication: RevokeUserInviteToPublicationPayload;
+  saveDocumentationPageDraftContent: SaveDocumentationPageDraftContentPayload;
+  scheduleDraft: ScheduleDraftPayload;
+  setDocumentationSidebarItemVisibility: SetDocumentationSidebarItemVisibilityPayload;
   subscribeToNewsletter: SubscribeToNewsletterPayload;
+  /** Mutation to sync documentation API reference definition */
+  syncDocumentationProjectApiDefinition: SyncDocumentationProjectApiDefinitionPayload;
+  /** Toggle allowContributorEdits flag to allow or restrict external contributors to further edit published articles. */
+  toggleAllowContributorEdits: ToggleAllowContributorEditsPayload;
   /** Mutation to sync documentation API reference definition */
   syncDocumentationProjectApiDefinition: SyncDocumentationProjectApiDefinitionPayload;
   /** Toggle allowContributorEdits flag to allow or restrict external contributors to further edit published articles. */
@@ -3349,6 +4099,14 @@ export type Mutation = {
    * Only available to the authenticated user.
    */
   toggleFollowUser: ToggleFollowUserPayload;
+  /** Toggle GPT bot crawling feature. */
+  toggleGPTBotCrawling: ToggleGptBotCrawlingPayload;
+  /** Toggles role based invite links' active status. Users can join the publication by the invite link only if it is active. */
+  toggleRoleBasedInviteLinks: ToggleRoleBasedInviteLinksPayload;
+  /** Toggle text selection sharer feature. */
+  toggleTextSelectionSharer: ToggleTextSelectionSharerPayload;
+  triggerWebhookTest: TriggerWebhookTestPayload;
+  unfollowTags: UnfollowTagsPayload;
   /** Toggle GPT bot crawling feature. */
   toggleGPTBotCrawling: ToggleGptBotCrawlingPayload;
   /** Toggles role based invite links' active status. Users can join the publication by the invite link only if it is active. */
@@ -3743,6 +4501,133 @@ export type MutationScheduleDraftArgs = {
 
 export type MutationSetDocumentationSidebarItemVisibilityArgs = {
   input: SetDocumentationSidebarItemVisibilityInput;
+export type MutationRecommendPublicationsArgs = {
+  input: RecommendPublicationsInput;
+};
+
+
+export type MutationReinviteUserToPublicationArgs = {
+  input: ReinviteUserToPublicationInput;
+};
+
+
+export type MutationRemoveCommentArgs = {
+  input: RemoveCommentInput;
+};
+
+
+export type MutationRemoveDocumentationGuideArgs = {
+  input: RemoveDocumentationGuideInput;
+};
+
+
+export type MutationRemoveDocumentationProjectArgs = {
+  input: RemoveDocumentationProjectInput;
+};
+
+
+export type MutationRemoveDocumentationProjectAiPromptArgs = {
+  input: RemoveDocumentationProjectAiPromptInput;
+};
+
+
+export type MutationRemoveDocumentationProjectCustomDomainArgs = {
+  input: RemoveDocumentationProjectCustomDomainInput;
+};
+
+
+export type MutationRemoveDocumentationProjectMemberArgs = {
+  input: RemoveDocumentationProjectMemberInput;
+};
+
+
+export type MutationRemoveDocumentationSidebarItemArgs = {
+  input: RemoveDocumentationSidebarItemInput;
+};
+
+
+export type MutationRemovePostArgs = {
+  input: RemovePostInput;
+};
+
+
+export type MutationRemovePublicationMemberArgs = {
+  input: RemovePublicationMemberInput;
+};
+
+
+export type MutationRemoveRecommendationArgs = {
+  input: RemoveRecommendationInput;
+};
+
+
+export type MutationRemoveRedirectionRuleArgs = {
+  input: RemoveRedirectionRuleInput;
+};
+
+
+export type MutationRemoveReplyArgs = {
+  input: RemoveReplyInput;
+};
+
+
+export type MutationRemoveSeriesArgs = {
+  input: RemoveSeriesInput;
+};
+
+
+export type MutationRenameDocumentationGuideArgs = {
+  input: RenameDocumentationGuideItemInput;
+};
+
+
+export type MutationRenameDocumentationSidebarItemArgs = {
+  input: RenameDocumentationSidebarItemInput;
+};
+
+
+export type MutationRescheduleDraftArgs = {
+  input: RescheduleDraftInput;
+};
+
+
+export type MutationResendWebhookRequestArgs = {
+  input: ResendWebhookRequestInput;
+};
+
+
+export type MutationRestorePostArgs = {
+  input: RestorePostInput;
+};
+
+
+export type MutationRetryDocumentationProjectCustomDomainVerificationArgs = {
+  input: RetryDocumentationProjectCustomDomainVerificationInput;
+};
+
+
+export type MutationRevokeInviteToDocumentationProjectArgs = {
+  input: RevokeInviteToDocumentationProjectInput;
+};
+
+
+export type MutationRevokeUserInviteToPublicationArgs = {
+  input: RevokeUserInviteToPublicationInput;
+};
+
+
+export type MutationSaveDocumentationPageDraftContentArgs = {
+  input: SaveDocumentationPageDraftContentInput;
+};
+
+
+export type MutationScheduleDraftArgs = {
+  input: ScheduleDraftInput;
+};
+
+
+export type MutationSetDocumentationSidebarItemVisibilityArgs = {
+  input: SetDocumentationSidebarItemVisibilityInput;
 };
 
 
@@ -3761,9 +4646,44 @@ export type MutationToggleAllowContributorEditsArgs = {
 };
 
 
+export type MutationSyncDocumentationProjectApiDefinitionArgs = {
+  input: SyncDocumentationProjectApiDefinitionInput;
+};
+
+
+export type MutationToggleAllowContributorEditsArgs = {
+  input: ToggleAllowContributorEditsInput;
+};
+
+
 export type MutationToggleFollowUserArgs = {
   id?: InputMaybe<Scalars['ID']['input']>;
   username?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type MutationToggleGptBotCrawlingArgs = {
+  input: ToggleGptBotCrawlingInput;
+};
+
+
+export type MutationToggleRoleBasedInviteLinksArgs = {
+  publicationId: Scalars['ID']['input'];
+};
+
+
+export type MutationToggleTextSelectionSharerArgs = {
+  input: ToggleTextSelectionSharerInput;
+};
+
+
+export type MutationTriggerWebhookTestArgs = {
+  input: TriggerWebhookTestInput;
+};
+
+
+export type MutationUnfollowTagsArgs = {
+  input: UnfollowTagsInput;
 };
 
 
@@ -3891,6 +4811,36 @@ export type MutationVerifyDocumentationProjectCustomDomainArgs = {
   input: VerifyDocumentationProjectCustomDomainInput;
 };
 
+
+export type MutationUpdateRedirectionRuleArgs = {
+  input: UpdateRedirectionRuleInput;
+};
+
+
+export type MutationUpdateReplyArgs = {
+  input: UpdateReplyInput;
+};
+
+
+export type MutationUpdateRoleBasedInviteArgs = {
+  input: UpdateRoleBasedInviteInput;
+};
+
+
+export type MutationUpdateSeriesArgs = {
+  input: UpdateSeriesInput;
+};
+
+
+export type MutationUpdateWebhookArgs = {
+  input: UpdateWebhookInput;
+};
+
+
+export type MutationVerifyDocumentationProjectCustomDomainArgs = {
+  input: VerifyDocumentationProjectCustomDomainInput;
+};
+
 /**
  * Basic information about the authenticated user.
  * User must be authenticated to use this type.
@@ -3910,6 +4860,10 @@ export type MyUser = IUser & Node & {
    * A list of beta features that the user has access to. Only available to the authenticated user.
    * @deprecated Beta features are no longer supported. Will be removed after 15/12/2024
    */
+  /**
+   * A list of beta features that the user has access to. Only available to the authenticated user.
+   * @deprecated Beta features are no longer supported. Will be removed after 15/12/2024
+   */
   betaFeatures: Array<BetaFeature>;
   /** The bio of the user. Visible in about me section of the user's profile. */
   bio?: Maybe<Content>;
@@ -3918,7 +4872,11 @@ export type MyUser = IUser & Node & {
   /** Whether or not the user is deactivated. */
   deactivated: Scalars['Boolean']['output'];
   drafts: UserDraftConnection;
+  drafts: UserDraftConnection;
   /** Email address of the user. Only available to the authenticated user. */
+  email: Scalars['String']['output'];
+  /** The email notification preferences of the user. */
+  emailNotificationPreferences: EmailNotificationPreferences;
   email: Scalars['String']['output'];
   /** The email notification preferences of the user. */
   emailNotificationPreferences: EmailNotificationPreferences;
@@ -3945,6 +4903,8 @@ export type MyUser = IUser & Node & {
   publications: UserPublicationsConnection;
   /** Returns the user's role if any. */
   role: UserRole;
+  /** Returns the user's role if any. */
+  role: UserRole;
   /** The social media links of the user. Shown on the user's profile. */
   socialMediaLinks?: Maybe<SocialMediaLinks>;
   /** The tagline of the user. Shown on the user's profile below the name. */
@@ -3958,8 +4918,25 @@ export type MyUser = IUser & Node & {
    * This is set when the user has tried updating their email address but it is not verified yet.
    */
   unverifiedEmail?: Maybe<Scalars['String']['output']>;
+  /** Returns list of tags from user's expertise. Shown on the user's profile. */
+  techStack: UserTagsConnection;
+  /**
+   * Unverified email address of the user. Only available to the authenticated user.
+   * This is set when the user has tried updating their email address but it is not verified yet.
+   */
+  unverifiedEmail?: Maybe<Scalars['String']['output']>;
   /** The username of the user. It is unique and tied with user's profile URL. Example - https://hashnode.com/@username */
   username: Scalars['String']['output'];
+};
+
+
+/**
+ * Basic information about the authenticated user.
+ * User must be authenticated to use this type.
+ */
+export type MyUserDraftsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first: Scalars['Int']['input'];
 };
 
 
@@ -4024,6 +5001,17 @@ export type MyUserPublicationsArgs = {
 export type MyUserTechStackArgs = {
   page: Scalars['Int']['input'];
   pageSize: Scalars['Int']['input'];
+  sortBy?: InputMaybe<UserPublicationsSort>;
+};
+
+
+/**
+ * Basic information about the authenticated user.
+ * User must be authenticated to use this type.
+ */
+export type MyUserTechStackArgs = {
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
 };
 
 /**
@@ -4076,8 +5064,24 @@ export type NewsletterSubscriber = Node & {
 
 export enum NewsletterSubscribeStatus {
   Confirmed = 'CONFIRMED',
+  Confirmed = 'CONFIRMED',
   Pending = 'PENDING'
 }
+
+export type NewsletterSubscriber = Node & {
+  __typename?: 'NewsletterSubscriber';
+  /**
+   * The date the subscriber was added.
+   * @deprecated Use `subscribedAt` instead. Will be removed after 12/4/2024
+   */
+  createdAt: Scalars['DateTime']['output'];
+  /** The email of the subscriber. */
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  /** The status of the subscriber. */
+  status: NewsletterSubscribeStatus;
+  subscribedAt: Scalars['DateTime']['output'];
+};
 
 export enum NewsletterUnsubscribeStatus {
   Unsubscribed = 'UNSUBSCRIBED'
@@ -4136,6 +5140,15 @@ export type PageEdge = {
   node: Node;
 };
 
+/**
+ * An edge that contains a node and is used in page based pagination.
+ * This is a common interface for all edges in page based pagination.
+ */
+export type PageEdge = {
+  /** A node in the connection. */
+  node: Node;
+};
+
 /** Contains information to help in pagination. */
 export type PageInfo = {
   __typename?: 'PageInfo';
@@ -4160,6 +5173,29 @@ export type PagesPreferences = {
   members?: Maybe<Scalars['Boolean']['output']>;
   /** A flag indicating if the publication's newsletter page is enabled. */
   newsletter?: Maybe<Scalars['Boolean']['output']>;
+};
+
+/** Contains the pending invite information. */
+export type PendingInvite = Node & {
+  __typename?: 'PendingInvite';
+  /** The email of the user that was invited. */
+  email?: Maybe<Scalars['String']['output']>;
+  /** The ID of the pending invite. */
+  id: Scalars['ID']['output'];
+  /** The role assigned to the user in the publication. */
+  role: UserPublicationRole;
+  /** Invited Hashnode user, returns null if the user is not a Hashnode user. */
+  user?: Maybe<User>;
+};
+
+export type PendingInviteConnection = PageConnection & {
+  __typename?: 'PendingInviteConnection';
+  /** A list of invites */
+  nodes: Array<PendingInvite>;
+  /** Information to aid in pagination. */
+  pageInfo: OffsetPageInfo;
+  /** The total number of invites. */
+  totalDocuments: Scalars['Int']['output'];
 };
 
 /** Contains the pending invite information. */
@@ -4227,6 +5263,10 @@ export type Post = Node & {
    * Returns male and female audio url of the post. Available in case the Audioblog is enabled.
    * @deprecated Audio Blogs are not supported anymore. This field will be removed 18/04/23
    */
+  /**
+   * Returns male and female audio url of the post. Available in case the Audioblog is enabled.
+   * @deprecated Audio Blogs are not supported anymore. This field will be removed 18/04/23
+   */
   audioUrls?: Maybe<AudioUrls>;
   /** Returns the user details of the author of the post. */
   author: User;
@@ -4277,8 +5317,10 @@ export type Post = Node & {
   /** The ID of the post. Used to uniquely identify the post. */
   id: Scalars['ID']['output'];
   /** Whether or not the post has automatically been published via RSS feed. */
+  /** Whether or not the post has automatically been published via RSS feed. */
   isAutoPublishedFromRSS: Scalars['Boolean']['output'];
   /**
+   * Whether or not the authenticated user is following this post.
    * Whether or not the authenticated user is following this post.
    *
    * Returns `null` if the user is not authenticated.
@@ -4290,6 +5332,14 @@ export type Post = Node & {
   ogMetaData?: Maybe<OpenGraphMetaData>;
   /** Preference settings for the post. Contains information about if the post is pinned to blog, comments are disabled, etc. */
   preferences: PostPreferences;
+  /**
+   * The previous slugs of the post. Only present if the slug has been changed.
+   *
+   * This could be used to create redirects for all posts from all previous slugs to the current slug.
+   *
+   * The latest slug is always the first element in the array.
+   */
+  previousSlugs: Array<Scalars['String']['output']>;
   /**
    * The previous slugs of the post. Only present if the slug has been changed.
    *
@@ -4316,6 +5366,8 @@ export type Post = Node & {
   series?: Maybe<Series>;
   /** The slug of the post. Used as address of the post on blog. Example - https://johndoe.com/my-post-slug */
   slug: Scalars['String']['output'];
+  /** Boolean flag to identify whether or not the post is sourced from GitHub. */
+  sourcedFromGithub: Scalars['Boolean']['output'];
   /** Boolean flag to identify whether or not the post is sourced from GitHub. */
   sourcedFromGithub: Scalars['Boolean']['output'];
   /** The subtitle of the post. Subtitle is a short description of the post which is also used in SEO if meta tags are not provided. */
@@ -4533,6 +5585,7 @@ export type PostPreferences = {
   __typename?: 'PostPreferences';
   /** A flag to indicate if the comments are disabled for the post. */
   disableComments: Scalars['Boolean']['output'];
+  /** Whether or not the post is hidden from the Hashnode community. */
   /** Whether or not the post is hidden from the Hashnode community. */
   isDelisted: Scalars['Boolean']['output'];
   /** A flag to indicate if the post is pinned to blog. Pinned post is shown on top of the blog. */
@@ -4813,6 +5866,7 @@ export type Publication = Node & {
   /** Domain information of the publication. */
   domainInfo: DomainInfo;
   /** Returns the list of drafts of the authenticated user in the publication. */
+  /** Returns the list of drafts of the authenticated user in the publication. */
   drafts: DraftConnection;
   /** Returns the publication's email imports, used with newsletter feature. */
   emailImport?: Maybe<EmailImport>;
@@ -4843,12 +5897,15 @@ export type Publication = Node & {
   isGithubAsSourceConnected: Scalars['Boolean']['output'];
   /** Returns true if GitHub backup is configured and active and false otherwise. */
   isGitHubBackupEnabled: Scalars['Boolean']['output'];
+  /** Returns whether the publication's GitHub source repo is connected. */
+  isGithubAsSourceConnected: Scalars['Boolean']['output'];
   /** A flag to indicate if the publication is using Headless CMS. This can be used to check if the post redirect needs authentication. */
   isHeadless: Scalars['Boolean']['output'];
   /** True if the publication is a team publication and false otherwise. */
   isTeam: Scalars['Boolean']['output'];
   /** Links to the publication's social media profiles. */
   links?: Maybe<PublicationLinks>;
+  members: PublicationMemberConnection;
   members: PublicationMemberConnection;
   /** The meta tags associated with the publication. */
   metaTags?: Maybe<Scalars['String']['output']>;
@@ -4861,8 +5918,11 @@ export type Publication = Node & {
   /** Returns the list of posts in the publication. */
   posts: PublicationPostConnection;
   postsViaPage: PublicationPostPageConnection;
+  postsViaPage: PublicationPostPageConnection;
   /** The publication preferences around layout, theme and other personalisations. */
   preferences: Preferences;
+  /** Returns a paginated list of public members of the publication. */
+  publicMembers: PublicationMemberConnection;
   /** Returns a paginated list of public members of the publication. */
   publicMembers: PublicationMemberConnection;
   /** Publications that are recommended by this publication. */
@@ -4878,8 +5938,18 @@ export type Publication = Node & {
    * This can be used to redirect a user to the new post slug (via `redirectedPost.slug`).
    */
   redirectedPost?: Maybe<Post>;
+  /**
+   * Returns a post by a previous slug. It does not resolve a post by its current slug.
+   *
+   * If a slug has been changed, we'll create a redirect from the old slug to the new one.
+   * With `redirectedPost` you can resolve a post by the old slug.
+   *
+   * This can be used to redirect a user to the new post slug (via `redirectedPost.slug`).
+   */
+  redirectedPost?: Maybe<Post>;
   /** Configured redirection rules for the publication. */
   redirectionRules: Array<RedirectionRule>;
+  /** Returns the scheduled drafts of the publication by the authenticated user. */
   /** Returns the scheduled drafts of the publication by the authenticated user. */
   scheduledDrafts: DraftConnection;
   /** Returns series by slug in the publication. */
@@ -4934,10 +6004,43 @@ export type PublicationAllScheduledDraftsArgs = {
  * Contains basic information about the publication.
  * A publication is a blog that can be created for a user or a team.
  */
+export type PublicationAllDraftsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PublicationSearchableDraftConnectionFilter>;
+  first: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
+export type PublicationAllScheduledDraftsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PublicationSearchableDraftConnectionFilter>;
+  first: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
 export type PublicationDraftsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<PublicationDraftConnectionFilter>;
   first: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
+export type PublicationMembersArgs = {
+  filter?: InputMaybe<PublicationMemberConnectionFilter>;
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
 };
 
 
@@ -4997,9 +6100,39 @@ export type PublicationPublicMembersArgs = {
  * Contains basic information about the publication.
  * A publication is a blog that can be created for a user or a team.
  */
+export type PublicationPostsViaPageArgs = {
+  filter?: InputMaybe<PublicationPostsViaPageFilter>;
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
+export type PublicationPublicMembersArgs = {
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
 export type PublicationRecommendingPublicationsArgs = {
   page: Scalars['Int']['input'];
   pageSize: Scalars['Int']['input'];
+};
+
+
+/**
+ * Contains basic information about the publication.
+ * A publication is a blog that can be created for a user or a team.
+ */
+export type PublicationRedirectedPostArgs = {
+  slug: Scalars['String']['input'];
 };
 
 
@@ -5087,6 +6220,10 @@ export type PublicationFeatures = {
    * Audio player for blog posts.
    * @deprecated Audio Blogs are not supported anymore. This field will be removed 18/04/23
    */
+  /**
+   * Audio player for blog posts.
+   * @deprecated Audio Blogs are not supported anymore. This field will be removed 18/04/23
+   */
   audioBlog: AudioBlogFeature;
   /** Individual styling for the publication. */
   customCSS: CustomCssFeature;
@@ -5094,8 +6231,14 @@ export type PublicationFeatures = {
   gptBotCrawling: GptBotCrawlingFeature;
   /** Headless CMS for the publication. */
   headlessCMS: HeadlessCmsFeature;
+  /** GPT Bot crawler to index the publication. */
+  gptBotCrawling: GptBotCrawlingFeature;
+  /** Headless CMS for the publication. */
+  headlessCMS: HeadlessCmsFeature;
   /** Newsletter feature for the publication which adds a `/newsletter` route for collecting subscribers and allows sending out newsletters. */
   newsletter: NewsletterFeature;
+  /** Flag to denote if publication is a pro team's publication. */
+  proTeam: ProTeamFeature;
   /** Flag to denote if publication is a pro team's publication. */
   proTeam: ProTeamFeature;
   /** Show the read time for blog posts. */
@@ -5120,6 +6263,8 @@ export type PublicationIntegrations = {
   fathomSiteID?: Maybe<Scalars['String']['output']>;
   /** FB Pixel ID for integration with Facebook Pixel. */
   fbPixelID?: Maybe<Scalars['String']['output']>;
+  /** Google Tag Manager ID for integration with Google Tag Manager. */
+  gTagManagerID?: Maybe<Scalars['String']['output']>;
   /** Google Analytics Tracking ID for integration with Google Analytics. */
   gaTrackingID?: Maybe<Scalars['String']['output']>;
   /** Google Tag Manager ID for integration with Google Tag Manager. */
@@ -5128,20 +6273,53 @@ export type PublicationIntegrations = {
   hotjarSiteID?: Maybe<Scalars['String']['output']>;
   /** Koala Public Key for integration with Koala. */
   koalaPublicKey?: Maybe<Scalars['String']['output']>;
+  /** Koala Public Key for integration with Koala. */
+  koalaPublicKey?: Maybe<Scalars['String']['output']>;
   /** Matomo Site ID for integration with Matomo Analytics. */
   matomoSiteID?: Maybe<Scalars['String']['output']>;
   /** Matomo URL for integration with Matomo Analytics. */
   matomoURL?: Maybe<Scalars['String']['output']>;
   /** MS Clarity ID for integration with Microsoft Clarity. */
   msClarityID?: Maybe<Scalars['String']['output']>;
+  /** MS Clarity ID for integration with Microsoft Clarity. */
+  msClarityID?: Maybe<Scalars['String']['output']>;
   /** A flag indicating if the custom domain is enabled for integration with Plausible Analytics. */
   plausibleAnalyticsEnabled?: Maybe<Scalars['Boolean']['output']>;
+  /** The share ID for the Hashnode-provided Umami analytics instance. */
+  umamiShareId?: Maybe<Scalars['String']['output']>;
   /** The share ID for the Hashnode-provided Umami analytics instance. */
   umamiShareId?: Maybe<Scalars['String']['output']>;
   /** The ID for the Hashnode-provided Umami analytics instance. */
   umamiWebsiteUUID?: Maybe<Scalars['String']['output']>;
   /** Web Monetization Payment Pointer for integration with Web Monetization. */
   wmPaymentPointer?: Maybe<Scalars['String']['output']>;
+};
+
+/** Contains the publication invite information. */
+export type PublicationInvite = {
+  __typename?: 'PublicationInvite';
+  /**
+   * Signifies if invite links in role-based invites are active.
+   * Users trying to join by role-based invite can only join if this is enabled.
+   */
+  areRoleBasedInviteLinksActive: Scalars['Boolean']['output'];
+  pendingInvites: PendingInviteConnection;
+  /** The paginated list of role based invites. */
+  roleBasedInvites: RoleBasedInviteConnection;
+};
+
+
+/** Contains the publication invite information. */
+export type PublicationInvitePendingInvitesArgs = {
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
+};
+
+
+/** Contains the publication invite information. */
+export type PublicationInviteRoleBasedInvitesArgs = {
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
 };
 
 /** Contains the publication invite information. */
@@ -5189,8 +6367,12 @@ export type PublicationLinks = {
   __typename?: 'PublicationLinks';
   /** Bluesky URL of the publication. */
   bluesky?: Maybe<Scalars['String']['output']>;
+  /** Bluesky URL of the publication. */
+  bluesky?: Maybe<Scalars['String']['output']>;
   /** Daily.dev URL of the publication. */
   dailydev?: Maybe<Scalars['String']['output']>;
+  /** Facebook URL of the publication. */
+  facebook?: Maybe<Scalars['String']['output']>;
   /** Facebook URL of the publication. */
   facebook?: Maybe<Scalars['String']['output']>;
   /** GitHub URL of the publication. */
@@ -5251,6 +6433,46 @@ export enum PublicationMemberPrivacyState {
   Public = 'PUBLIC'
 }
 
+/** Contains the publication member information. */
+export type PublicationMember = Node & {
+  __typename?: 'PublicationMember';
+  /** The ID of the publication member. */
+  id: Scalars['ID']['output'];
+  /**
+   * Denotes if the member is public or private
+   * A private member is not visible on members page
+   */
+  privacyState?: Maybe<PublicationMemberPrivacyState>;
+  /** The role of the user in the publication. */
+  role: UserPublicationRole;
+  /** The user who is a member of the publication. */
+  user?: Maybe<User>;
+};
+
+export type PublicationMemberConnection = PageConnection & {
+  __typename?: 'PublicationMemberConnection';
+  /** A list of members */
+  nodes: Array<PublicationMember>;
+  /** Information for page based pagination in Member connection. */
+  pageInfo: OffsetPageInfo;
+  /** The total number of documents in the connection. */
+  totalDocuments: Scalars['Int']['output'];
+};
+
+/** The filter for the publication member connection. */
+export type PublicationMemberConnectionFilter = {
+  /** Search filter can be used to filter members by their username or email. */
+  search?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** Publication member privacy state on members page */
+export enum PublicationMemberPrivacyState {
+  /** The member is private and not visible on the members page. */
+  Private = 'PRIVATE',
+  /** The member is public and visible on the members page. */
+  Public = 'PUBLIC'
+}
+
 /** Contains the publication's navbar items. */
 export type PublicationNavbarItem = {
   __typename?: 'PublicationNavbarItem';
@@ -5260,6 +6482,10 @@ export type PublicationNavbarItem = {
   label?: Maybe<Scalars['String']['output']>;
   /** The static page added to the navbar item. */
   page?: Maybe<StaticPage>;
+  /**
+   * The order of the navbar item.
+   * @deprecated Navbar items are already returned in the correct order. Priority value is not needed and might be 0 in most cases.
+   */
   /**
    * The order of the navbar item.
    * @deprecated Navbar items are already returned in the correct order. Priority value is not needed and might be 0 in most cases.
@@ -5303,6 +6529,8 @@ export type PublicationPostConnection = Connection & {
  * Returns a list of edges which contains the posts in publication and cursor to the last item of the previous page.
  */
 export type PublicationPostConnectionFilter = {
+  /** Only return posts that are deleted. Query returns active posts by default, set this to true to return deleted posts. */
+  deletedOnly?: InputMaybe<Scalars['Boolean']['input']>;
   /** Only return posts that are deleted. Query returns active posts by default, set this to true to return deleted posts. */
   deletedOnly?: InputMaybe<Scalars['Boolean']['input']>;
   /** Remove pinned post from the result set. */
@@ -5449,6 +6677,61 @@ export type PublishDraftPayload = {
   post?: Maybe<Post>;
 };
 
+export type PublicationViewEdge = Edge & {
+  __typename?: 'PublicationViewEdge';
+  cursor: Scalars['String']['output'];
+  node: Views;
+};
+
+export type PublicationVisitorsEdge = Edge & {
+  __typename?: 'PublicationVisitorsEdge';
+  cursor: Scalars['String']['output'];
+  node: Visitors;
+};
+
+export type PublishDocumentationApiReferenceInput = {
+  guideSlug: Scalars['String']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type PublishDocumentationApiReferencePayload = {
+  __typename?: 'PublishDocumentationApiReferencePayload';
+  guide?: Maybe<DocumentationApiReference>;
+};
+
+export type PublishDocumentationGuideInput = {
+  guideSlug: Scalars['String']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type PublishDocumentationGuidePayload = {
+  __typename?: 'PublishDocumentationGuidePayload';
+  guide?: Maybe<DocumentationGuide>;
+};
+
+export type PublishDocumentationPageDraftInput = {
+  guideSlug: Scalars['String']['input'];
+  pageId: Scalars['ID']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type PublishDocumentationPageDraftPayload = {
+  __typename?: 'PublishDocumentationPageDraftPayload';
+  guide?: Maybe<DocumentationGuide>;
+  page?: Maybe<DocumentationPage>;
+};
+
+export type PublishDraftInput = {
+  /** The id of the draft that should be published */
+  draftId: Scalars['ObjectId']['input'];
+};
+
+export type PublishDraftPayload = {
+  __typename?: 'PublishDraftPayload';
+  /** The newly created post based on the draft */
+  post?: Maybe<Post>;
+};
+
 /** Contains information about the post to be published. */
 export type PublishPostInput = {
   /**
@@ -5491,6 +6774,11 @@ export type PublishPostInput = {
    * https://github.com/Hashnode/support/blob/main/misc/tags.json
    */
   tags?: InputMaybe<Array<PublishPostTagInput>>;
+  /**
+   * A list of tags to add to the post. You can get a list of popular tags available on Hashnode here.
+   * https://github.com/Hashnode/support/blob/main/misc/tags.json
+   */
+  tags?: InputMaybe<Array<PublishPostTagInput>>;
   /** The title of the post. */
   title: Scalars['String']['input'];
 };
@@ -5505,6 +6793,7 @@ export type PublishPostSettingsInput = {
   delisted?: InputMaybe<Scalars['Boolean']['input']>;
   /** A flag to indicate if the post contains table of content */
   enableTableOfContent?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Whether to send a newsletter for this post. */
   /** Whether to send a newsletter for this post. */
   isNewsletterActivated?: InputMaybe<Scalars['Boolean']['input']>;
   /** A flag to indicate if the post is scheduled. */
@@ -5539,6 +6828,9 @@ export type Query = {
   checkCustomDomainAvailability: CheckCustomDomainAvailabilityResult;
   checkSubdomainAvailability: CheckSubdomainAvailabilityResult;
   documentationProject?: Maybe<DocumentationProject>;
+  checkCustomDomainAvailability: CheckCustomDomainAvailabilityResult;
+  checkSubdomainAvailability: CheckSubdomainAvailabilityResult;
+  documentationProject?: Maybe<DocumentationProject>;
   /**
    * Returns a draft by ID.
    * Draft is a post that is not published yet.
@@ -5551,6 +6843,8 @@ export type Query = {
   feed: FeedPostConnection;
   /** Returns the current authenticated user. Only available to the authenticated user. */
   me: MyUser;
+  /** Returns post by ID. Can be used to render post page on blog. */
+  post?: Maybe<Post>;
   /** Returns post by ID. Can be used to render post page on blog. */
   post?: Maybe<Post>;
   /**
@@ -5587,6 +6881,22 @@ export type QueryDocumentationProjectArgs = {
 };
 
 
+export type QueryCheckCustomDomainAvailabilityArgs = {
+  input: CheckCustomDomainAvailabilityInput;
+};
+
+
+export type QueryCheckSubdomainAvailabilityArgs = {
+  subdomain: Scalars['String']['input'];
+};
+
+
+export type QueryDocumentationProjectArgs = {
+  host?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
 export type QueryDraftArgs = {
   id: Scalars['ObjectId']['input'];
 };
@@ -5596,6 +6906,11 @@ export type QueryFeedArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<FeedFilter>;
   first: Scalars['Int']['input'];
+};
+
+
+export type QueryPostArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -5649,6 +6964,16 @@ export type ReadTimeFeature = Feature & {
   isEnabled: Scalars['Boolean']['output'];
 };
 
+export type RecommendPublicationsInput = {
+  recommendedPublicationIds: Array<Scalars['ID']['input']>;
+  recommendingPublicationId: Scalars['ID']['input'];
+};
+
+export type RecommendPublicationsPayload = {
+  __typename?: 'RecommendPublicationsPayload';
+  recommendedPublications?: Maybe<Array<UserRecommendedPublicationEdge>>;
+};
+
 /** Contains a publication and a cursor for pagination. */
 export type RecommendedPublicationEdge = Edge & {
   __typename?: 'RecommendedPublicationEdge';
@@ -5673,10 +6998,201 @@ export type RedirectionRule = Node & {
   /** The destination URL of the redirection rule. */
   destination: Scalars['URL']['output'];
   id: Scalars['ID']['output'];
+  destination: Scalars['URL']['output'];
+  id: Scalars['ID']['output'];
   /** The source URL of the redirection rule. */
   source: Scalars['String']['output'];
   /** The type of the redirection rule. */
   type: HttpRedirectionType;
+};
+
+/** Input to reinvite a user to a publication. */
+export type ReinviteUserToPublicationInput = {
+  /** The ID of the invitation to resend. */
+  inviteId: Scalars['ID']['input'];
+  /** The publication ID to resend the invitation from. */
+  publicationId: Scalars['ID']['input'];
+};
+
+/** Response to reinviting a user to a publication. */
+export type ReinviteUserToPublicationPayload = {
+  __typename?: 'ReinviteUserToPublicationPayload';
+  /** Signifies if the mutation was successful. */
+  success: Scalars['Boolean']['output'];
+};
+
+export type RelativeTimeRange = {
+  /** The number of time periods to go back in time. */
+  n: Scalars['Int']['input'];
+  /** The type of time range to be used. */
+  relative: TimePeriod;
+};
+
+export type RemoveCommentInput = {
+  id: Scalars['ID']['input'];
+};
+
+export type RemoveCommentPayload = {
+  __typename?: 'RemoveCommentPayload';
+  comment?: Maybe<Comment>;
+};
+
+export type RemoveDocumentationGuideInput = {
+  guideSlug: Scalars['String']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type RemoveDocumentationGuidePayload = {
+  __typename?: 'RemoveDocumentationGuidePayload';
+  guide?: Maybe<DocumentationGuideItem>;
+};
+
+/** The input for removing a prompt from the AI search */
+export type RemoveDocumentationProjectAiPromptInput = {
+  projectId: Scalars['ID']['input'];
+  promptId: Scalars['ID']['input'];
+};
+
+/** Response to removing a prompt from the AI search */
+export type RemoveDocumentationProjectAiPromptPayload = {
+  __typename?: 'RemoveDocumentationProjectAIPromptPayload';
+  project: DocumentationProject;
+};
+
+export type RemoveDocumentationProjectCustomDomainInput = {
+  projectId: Scalars['ID']['input'];
+};
+
+export type RemoveDocumentationProjectCustomDomainPayload = {
+  __typename?: 'RemoveDocumentationProjectCustomDomainPayload';
+  project?: Maybe<DocumentationProject>;
+};
+
+/** The input for removing a documentation project. */
+export type RemoveDocumentationProjectInput = {
+  /** The ID of the documentation project that should be removed. */
+  projectId: Scalars['ID']['input'];
+};
+
+/** The input for the removal of a member from a documentation */
+export type RemoveDocumentationProjectMemberInput = {
+  projectId: Scalars['ID']['input'];
+  userId: Scalars['ID']['input'];
+};
+
+export type RemoveDocumentationProjectMemberPayload = {
+  __typename?: 'RemoveDocumentationProjectMemberPayload';
+  project?: Maybe<DocumentationProject>;
+  removedMember?: Maybe<DocumentationProjectMember>;
+};
+
+/** The payload for removing a documentation project. */
+export type RemoveDocumentationProjectPayload = {
+  __typename?: 'RemoveDocumentationProjectPayload';
+  /** The documentation project that was removed. */
+  project?: Maybe<DocumentationProject>;
+};
+
+export type RemoveDocumentationSidebarItemInput = {
+  guideSlug: Scalars['String']['input'];
+  itemId: Scalars['ID']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type RemoveDocumentationSidebarItemPayload = {
+  __typename?: 'RemoveDocumentationSidebarItemPayload';
+  guide?: Maybe<DocumentationGuide>;
+};
+
+export type RemovePostInput = {
+  /** The ID of the post to remove. */
+  id: Scalars['ID']['input'];
+};
+
+export type RemovePostPayload = {
+  __typename?: 'RemovePostPayload';
+  /** The deleted post. */
+  post?: Maybe<Post>;
+};
+
+/** Input to remove a user from a publication. */
+export type RemovePublicationMemberInput = {
+  /** The publication ID the user is a member of. */
+  publicationId: Scalars['ID']['input'];
+  /** The username of the user to remove from the publication. */
+  username: Scalars['String']['input'];
+};
+
+/** Response to removing a user from a publication. */
+export type RemovePublicationMemberPayload = {
+  __typename?: 'RemovePublicationMemberPayload';
+  /** Returns the removed publication member. */
+  member: PublicationMember;
+};
+
+export type RemoveRecommendationInput = {
+  recommendedPublicationId: Scalars['ID']['input'];
+  recommendingPublicationId: Scalars['ID']['input'];
+};
+
+export type RemoveRecommendationPayload = {
+  __typename?: 'RemoveRecommendationPayload';
+  recommendedPublication: Publication;
+};
+
+export type RemoveRedirectionRuleInput = {
+  id: Scalars['ID']['input'];
+  publicationId: Scalars['ID']['input'];
+};
+
+export type RemoveRedirectionRulePayload = {
+  __typename?: 'RemoveRedirectionRulePayload';
+  redirectionRule: RedirectionRule;
+};
+
+export type RemoveReplyInput = {
+  commentId: Scalars['ID']['input'];
+  replyId: Scalars['ID']['input'];
+};
+
+export type RemoveReplyPayload = {
+  __typename?: 'RemoveReplyPayload';
+  reply?: Maybe<Reply>;
+};
+
+export type RemoveSeriesInput = {
+  /** The id of the series to remove. */
+  id: Scalars['ID']['input'];
+};
+
+export type RemoveSeriesPayload = {
+  __typename?: 'RemoveSeriesPayload';
+  /** Returns the updated series. */
+  series: Series;
+};
+
+export type RenameDocumentationGuideItemInput = {
+  guideSlug: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type RenameDocumentationGuideItemPayload = {
+  __typename?: 'RenameDocumentationGuideItemPayload';
+  guide?: Maybe<DocumentationGuideItem>;
+};
+
+export type RenameDocumentationSidebarItemInput = {
+  guideSlug: Scalars['String']['input'];
+  itemId: Scalars['ID']['input'];
+  label: Scalars['String']['input'];
+  projectId: Scalars['ID']['input'];
+};
+
+export type RenameDocumentationSidebarItemPayload = {
+  __typename?: 'RenameDocumentationSidebarItemPayload';
+  guide?: Maybe<DocumentationGuide>;
+  item?: Maybe<DocumentationSidebarItem>;
 };
 
 /** Input to reinvite a user to a publication. */
@@ -6067,11 +7583,19 @@ export enum Scope {
   DeleteDraft = 'delete_draft',
   DocsAdminOrOwner = 'docs_admin_or_owner',
   DocsOwner = 'docs_owner',
+  DeleteDraft = 'delete_draft',
+  DocsAdminOrOwner = 'docs_admin_or_owner',
+  DocsOwner = 'docs_owner',
   ImportSubscribersToPublication = 'import_subscribers_to_publication',
   InvitedDocsAdmin = 'invited_docs_admin',
   InvitedTeamUser = 'invited_team_user',
   MoveDraft = 'move_draft',
+  InvitedDocsAdmin = 'invited_docs_admin',
+  InvitedTeamUser = 'invited_team_user',
+  MoveDraft = 'move_draft',
   PublicationAdmin = 'publication_admin',
+  PublicationAuthor = 'publication_author',
+  PublicationMember = 'publication_member',
   PublicationAuthor = 'publication_author',
   PublicationMember = 'publication_member',
   PublishComment = 'publish_comment',
@@ -6080,13 +7604,18 @@ export enum Scope {
   PublishReply = 'publish_reply',
   RecommendPublications = 'recommend_publications',
   RejectDraftSubmission = 'reject_draft_submission',
+  RejectDraftSubmission = 'reject_draft_submission',
   RemoveComment = 'remove_comment',
   RemoveReply = 'remove_reply',
+  RestorePost = 'restore_post',
   RestorePost = 'restore_post',
   Signup = 'signup',
   SubmitDraft = 'submit_draft',
   TeamHashnode = 'team_hashnode',
+  SubmitDraft = 'submit_draft',
+  TeamHashnode = 'team_hashnode',
   UpdateComment = 'update_comment',
+  UpdateDraft = 'update_draft',
   UpdateDraft = 'update_draft',
   UpdatePost = 'update_post',
   UpdateReply = 'update_reply',
@@ -6094,7 +7623,13 @@ export enum Scope {
   WriteAiSearchPrompt = 'write_ai_search_prompt',
   WriteDraft = 'write_draft',
   WriteDraftRevision = 'write_draft_revision',
+  WriteAiSearchPrompt = 'write_ai_search_prompt',
+  WriteDraft = 'write_draft',
+  WriteDraftRevision = 'write_draft_revision',
   WritePost = 'write_post',
+  WriteSeries = 'write_series',
+  WriteStaticPage = 'write_static_page',
+  WriteWidget = 'write_widget'
   WriteSeries = 'write_series',
   WriteStaticPage = 'write_static_page',
   WriteWidget = 'write_widget'
@@ -6114,6 +7649,10 @@ export type SearchPostConnection = Connection & {
 };
 
 export type SearchPostsOfPublicationFilter = {
+  /** An array of author Ids to filter the posts. */
+  authorIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  /** Only return posts that are deleted. Query returns active posts by default, set this to true to return deleted posts. */
+  deletedOnly?: InputMaybe<Scalars['Boolean']['input']>;
   /** An array of author Ids to filter the posts. */
   authorIds?: InputMaybe<Array<Scalars['ID']['input']>>;
   /** Only return posts that are deleted. Query returns active posts by default, set this to true to return deleted posts. */
@@ -6239,9 +7778,24 @@ export type SetDocumentationSidebarItemVisibilityPayload = {
   item?: Maybe<DocumentationSidebarItem>;
 };
 
+export type SetDocumentationSidebarItemVisibilityInput = {
+  guideSlug: Scalars['String']['input'];
+  itemId: Scalars['ID']['input'];
+  projectId: Scalars['ID']['input'];
+  visibility: DocumentationSidebarItemVisibility;
+};
+
+export type SetDocumentationSidebarItemVisibilityPayload = {
+  __typename?: 'SetDocumentationSidebarItemVisibilityPayload';
+  guide?: Maybe<DocumentationGuide>;
+  item?: Maybe<DocumentationSidebarItem>;
+};
+
 /** Available social media links. */
 export type SocialMediaLinks = {
   __typename?: 'SocialMediaLinks';
+  /** The user's Bluesky profile. */
+  bluesky?: Maybe<Scalars['String']['output']>;
   /** The user's Bluesky profile. */
   bluesky?: Maybe<Scalars['String']['output']>;
   /** The user's Facebook profile. */
@@ -6284,6 +7838,7 @@ export type StaticPage = Node & {
   ogMetaData?: Maybe<OpenGraphMetaData>;
   /** Information about the static page's SEO metadata i.e. title and description. */
   seo?: Maybe<Seo>;
+  /** The slug of the static page. Used to access static page. Example `https://johndoe.com/my-page`. */
   /** The slug of the static page. Used to access static page. Example `https://johndoe.com/my-page`. */
   slug: Scalars['String']['output'];
   /** The title of the static page. Shown in nav bar. */
@@ -6353,8 +7908,26 @@ export type SyncDocumentationProjectApiDefinitionPayload = {
   success: Scalars['Boolean']['output'];
 };
 
+/** The input for syncing API reference definitions */
+export type SyncDocumentationProjectApiDefinitionInput = {
+  /** The ID of the docs API reference */
+  apiReferenceId: Scalars['ID']['input'];
+  /** The ID of the documentation project */
+  projectId: Scalars['ID']['input'];
+  /** The ID of the reference version */
+  versionId: Scalars['ID']['input'];
+};
+
+/** The response to syncing documentation project API Reference definition */
+export type SyncDocumentationProjectApiDefinitionPayload = {
+  __typename?: 'SyncDocumentationProjectApiDefinitionPayload';
+  /** Signifies if the mutation was successful. */
+  success: Scalars['Boolean']['output'];
+};
+
 export type TableOfContentsFeature = Feature & {
   __typename?: 'TableOfContentsFeature';
+  /** Whether or not the user has chosen to show a table of contents on the post. */
   /** Whether or not the user has chosen to show a table of contents on the post. */
   isEnabled: Scalars['Boolean']['output'];
   /** The content of the table of contents. */
@@ -6479,11 +8052,128 @@ export type ToggleAllowContributorEditsPayload = {
   publication?: Maybe<Publication>;
 };
 
+export type TimeFilter = {
+  /**
+   * Narrow the time range to a specific period.
+   *
+   * Can't be used with `relative`.
+   */
+  absolute?: InputMaybe<AbsoluteTimeRange>;
+  /**
+   * Narrow the time range to a specific period.
+   *
+   * Can't be used with `absolute`.
+   */
+  relative?: InputMaybe<RelativeTimeRange>;
+};
+
+export enum TimeGranularity {
+  Daily = 'DAILY',
+  Hourly = 'HOURLY',
+  Monthly = 'MONTHLY',
+  Weekly = 'WEEKLY',
+  Yearly = 'YEARLY'
+}
+
+export enum TimePeriod {
+  LastNDays = 'LAST_N_DAYS',
+  LastNHours = 'LAST_N_HOURS',
+  LastNMonths = 'LAST_N_MONTHS',
+  LastNWeeks = 'LAST_N_WEEKS',
+  LastNYears = 'LAST_N_YEARS'
+}
+
+export type ToggleAllowContributorEditsInput = {
+  publicationId: Scalars['ID']['input'];
+};
+
+export type ToggleAllowContributorEditsPayload = {
+  __typename?: 'ToggleAllowContributorEditsPayload';
+  publication?: Maybe<Publication>;
+};
+
 /** Payload for the toggleFollowingUser mutation. */
 export type ToggleFollowUserPayload = {
   __typename?: 'ToggleFollowUserPayload';
   /** The user that was followed/unfollowed. */
   user?: Maybe<User>;
+};
+
+export type ToggleGptBotCrawlingInput = {
+  publicationId: Scalars['ID']['input'];
+};
+
+export type ToggleGptBotCrawlingPayload = {
+  __typename?: 'ToggleGPTBotCrawlingPayload';
+  publication?: Maybe<Publication>;
+};
+
+/** Response to toggling role based invite links. */
+export type ToggleRoleBasedInviteLinksPayload = {
+  __typename?: 'ToggleRoleBasedInviteLinksPayload';
+  /** Signifies the status of invite links after toggling. */
+  areRoleBasedInviteLinksActive: Scalars['Boolean']['output'];
+};
+
+export type ToggleTextSelectionSharerInput = {
+  publicationId: Scalars['ID']['input'];
+};
+
+export type ToggleTextSelectionSharerPayload = {
+  __typename?: 'ToggleTextSelectionSharerPayload';
+  publication?: Maybe<Publication>;
+};
+
+export type TriggerWebhookTestInput = {
+  webhookId: Scalars['ID']['input'];
+};
+
+export type TriggerWebhookTestPayload = {
+  __typename?: 'TriggerWebhookTestPayload';
+  webhook?: Maybe<Webhook>;
+};
+
+export type UnfollowTagsInput = {
+  /** List of tag ids to unfollow. */
+  ids: Array<Scalars['ID']['input']>;
+};
+
+export type UnfollowTagsPayload = {
+  __typename?: 'UnfollowTagsPayload';
+  /** List of tags unfollowed by the user. */
+  tags?: Maybe<Array<Tag>>;
+};
+
+/** Views implementation that will be returned if no grouping is applied. */
+export type UngroupedDocsViews = DocsViews & Node & {
+  __typename?: 'UngroupedDocsViews';
+  id: Scalars['ID']['output'];
+  /** The aggregated views. */
+  total: Scalars['Int']['output'];
+};
+
+/** Visitors implementation that will be returned if no grouping is applied. */
+export type UngroupedDocsVisitors = DocsVisitors & Node & {
+  __typename?: 'UngroupedDocsVisitors';
+  id: Scalars['ID']['output'];
+  /** The aggregated number of visitors. */
+  total: Scalars['Int']['output'];
+};
+
+/** Views implementation that will be returned if no grouping is applied. */
+export type UngroupedViews = Node & Views & {
+  __typename?: 'UngroupedViews';
+  id: Scalars['ID']['output'];
+  /** The aggregated views. */
+  total: Scalars['Int']['output'];
+};
+
+/** Visitors implementation that will be returned if no grouping is applied. */
+export type UngroupedVisitors = Node & Visitors & {
+  __typename?: 'UngroupedVisitors';
+  id: Scalars['ID']['output'];
+  /** The aggregated number of visitors. */
+  total: Scalars['Int']['output'];
 };
 
 export type ToggleGptBotCrawlingInput = {
@@ -6865,6 +8555,85 @@ export type UpdateWebhookPayload = {
   webhook?: Maybe<Webhook>;
 };
 
+export type UpdateRedirectionRuleInput = {
+  destination?: InputMaybe<Scalars['URL']['input']>;
+  id: Scalars['ID']['input'];
+  publicationId: Scalars['ID']['input'];
+  source?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<HttpRedirectionType>;
+};
+
+export type UpdateRedirectionRulePayload = {
+  __typename?: 'UpdateRedirectionRulePayload';
+  redirectionRule: RedirectionRule;
+};
+
+export type UpdateReplyInput = {
+  commentId: Scalars['ID']['input'];
+  contentMarkdown: Scalars['String']['input'];
+  replyId: Scalars['ID']['input'];
+};
+
+export type UpdateReplyPayload = {
+  __typename?: 'UpdateReplyPayload';
+  reply?: Maybe<Reply>;
+};
+
+/** Input to update a role based invite. */
+export type UpdateRoleBasedInviteInput = {
+  /** The capacity of how many members to be invited by the link. */
+  capacity?: InputMaybe<Scalars['Int']['input']>;
+  /** Boolean to enable unlimited capacity. */
+  enableUnlimitedCapacity?: InputMaybe<Scalars['Boolean']['input']>;
+  /** The expiry date of the invite. */
+  expiryDate?: InputMaybe<Scalars['DateTime']['input']>;
+  /** The ID of the role based invite. */
+  inviteId: Scalars['ID']['input'];
+  publicationId: Scalars['ID']['input'];
+  /** The role to assign to the user in the publication. */
+  role?: InputMaybe<UserPublicationInviteRole>;
+};
+
+/** Response to updating a role based invite for a publication. */
+export type UpdateRoleBasedInvitePayload = {
+  __typename?: 'UpdateRoleBasedInvitePayload';
+  /** The updated role based invite. */
+  invite: RoleBasedInvite;
+};
+
+export type UpdateSeriesInput = {
+  /** The cover image of the series. */
+  coverImage?: InputMaybe<Scalars['String']['input']>;
+  /** The description of the series. Accepts markdown. */
+  descriptionMarkdown?: InputMaybe<Scalars['String']['input']>;
+  /** The id of the series to update. */
+  id: Scalars['ID']['input'];
+  /** The name of the series. */
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** The slug of the series. Used to access series page.  Example https://johndoe.com/series/series-slug */
+  slug?: InputMaybe<Scalars['String']['input']>;
+  /** The sort order of the series, determines if the latest posts should appear first or last in series. */
+  sortOrder?: InputMaybe<SortOrder>;
+};
+
+export type UpdateSeriesPayload = {
+  __typename?: 'UpdateSeriesPayload';
+  /** Returns the updated series. */
+  series: Series;
+};
+
+export type UpdateWebhookInput = {
+  events?: InputMaybe<Array<WebhookEvent>>;
+  id: Scalars['ID']['input'];
+  secret?: InputMaybe<Scalars['String']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UpdateWebhookPayload = {
+  __typename?: 'UpdateWebhookPayload';
+  webhook?: Maybe<Webhook>;
+};
+
 export enum UrlPattern {
   /** Post URLs contain the slug (for example `my slug`) and a random id (like `1234`) , e.g. "/my-slug-1234". */
   Default = 'DEFAULT',
@@ -6901,6 +8670,7 @@ export type User = IUser & Node & {
   followersCount: Scalars['Int']['output'];
   /**
    * Whether or not the authenticated user follows this user.
+   * Whether or not the authenticated user follows this user.
    * Returns false if the authenticated user this user.
    */
   following: Scalars['Boolean']['output'];
@@ -6909,6 +8679,7 @@ export type User = IUser & Node & {
   /** The users which this user is following */
   follows: UserConnection;
   /**
+   * Whether or not this user follows the authenticated user.
    * Whether or not this user follows the authenticated user.
    * Returns false if the authenticated user this user.
    */
@@ -6931,6 +8702,8 @@ export type User = IUser & Node & {
   tagline?: Maybe<Scalars['String']['output']>;
   /** Returns a list of tags that the user follows. */
   tagsFollowing: Array<Tag>;
+  /** Returns list of tags from user's expertise. Shown on the user's profile. */
+  techStack: UserTagsConnection;
   /** Returns list of tags from user's expertise. Shown on the user's profile. */
   techStack: UserTagsConnection;
   /** The username of the user. It is unique and tied with user's profile URL. Example - https://hashnode.com/@username */
@@ -6966,6 +8739,14 @@ export type UserPublicationsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   filter?: InputMaybe<UserPublicationsConnectionFilter>;
   first: Scalars['Int']['input'];
+  sortBy?: InputMaybe<UserPublicationsSort>;
+};
+
+
+/** Basic information about a user on Hashnode. */
+export type UserTechStackArgs = {
+  page: Scalars['Int']['input'];
+  pageSize: Scalars['Int']['input'];
   sortBy?: InputMaybe<UserPublicationsSort>;
 };
 
@@ -7011,6 +8792,26 @@ export type UserDraftEdge = Edge & {
   node: Draft;
 };
 
+/** Drafts that belong to a user. */
+export type UserDraftConnection = Connection & {
+  __typename?: 'UserDraftConnection';
+  /** A list of edges. */
+  edges: Array<UserDraftEdge>;
+  /** Generic information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** The total number of documents in the connection. */
+  totalDocuments: Scalars['Int']['output'];
+};
+
+/** A generic type which holds a draft during pagination. */
+export type UserDraftEdge = Edge & {
+  __typename?: 'UserDraftEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of UserDraftEdge. */
+  node: Draft;
+};
+
 /** Contains a node of type user and cursor for pagination. */
 export type UserEdge = Edge & {
   __typename?: 'UserEdge';
@@ -7019,6 +8820,20 @@ export type UserEdge = Edge & {
   /** The node containing User information */
   node: User;
 };
+
+export type UserInviteInput = {
+  /** The email of the user to invite to the publication. */
+  email?: InputMaybe<Scalars['String']['input']>;
+  /** The role to assign to the user in the publication. */
+  role: UserPublicationInviteRole;
+  /** Username of the user to invite to the publication. */
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+export enum UserInviteStatus {
+  Invited = 'INVITED',
+  NotInvited = 'NOT_INVITED'
+}
 
 export type UserInviteInput = {
   /** The email of the user to invite to the publication. */
@@ -7108,6 +8923,17 @@ export enum UserPublicationInviteRole {
   Editor = 'EDITOR'
 }
 
+/** The invited role of the user in the publication. */
+export enum UserPublicationInviteRole {
+  /** Contributors can join the publication and contribute an article. They cannot directly publish a new article. */
+  Contributor = 'CONTRIBUTOR',
+  /**
+   * The editor has access to the publication dashboard to customize the blog and approve/reject posts.
+   * They also have access to the member panel to add/modify/remove members. Editors cannot remove other editors or update their roles.
+   */
+  Editor = 'EDITOR'
+}
+
 /** The role of the user in the publication. */
 export enum UserPublicationRole {
   /** Contributors can join the publication and contribute an article. They cannot directly publish a new article. */
@@ -7151,6 +8977,18 @@ export type UserPublicationsEdge = Edge & {
   /** The role of the user in the publication. */
   role: UserPublicationRole;
 };
+
+/** Sorting for the publications of a user. */
+export enum UserPublicationsSort {
+  /** Oldest publication first. */
+  DateCreatedAsc = 'DATE_CREATED_ASC',
+  /** Newest publication first. */
+  DateCreatedDesc = 'DATE_CREATED_DESC',
+  /** Recently updated publication last. */
+  DateUpdatedAsc = 'DATE_UPDATED_ASC',
+  /** Recently updated publication first. */
+  DateUpdatedDesc = 'DATE_UPDATED_DESC'
+}
 
 /** Sorting for the publications of a user. */
 export enum UserPublicationsSort {
@@ -7226,6 +9064,52 @@ export type VersioningFeature = Feature & {
   isEnabled: Scalars['Boolean']['output'];
 };
 
+/** Role of the user within Hashnode */
+export enum UserRole {
+  Moderator = 'MODERATOR',
+  Superuser = 'SUPERUSER',
+  User = 'USER'
+}
+
+export type UserTagsConnection = PageConnection & {
+  __typename?: 'UserTagsConnection';
+  /** A list of tags */
+  nodes: Array<Tag>;
+  /** Information for page based pagination in users connection. */
+  pageInfo: OffsetPageInfo;
+  /** The total number of documents in the connection. */
+  totalDocuments: Scalars['Int']['output'];
+};
+
+export enum ValidationMethod {
+  Id = 'ID'
+}
+
+export type VerifyDocumentationProjectCustomDomainInput = {
+  projectId: Scalars['ID']['input'];
+};
+
+export type VerifyDocumentationProjectCustomDomainPayload = {
+  __typename?: 'VerifyDocumentationProjectCustomDomainPayload';
+  /**
+   * Additional DNS entries required to verify the domain.
+   * There are cases where additional records in the DNS config are required to successfully verify the domain.
+   */
+  dnsVerificationEntries: Array<DnsVerificationEntry>;
+  /**
+   * The documentation project where the custom domain should be verified.
+   * Note, that the verification can also fail.
+   */
+  project?: Maybe<DocumentationProject>;
+};
+
+/** Contains the flag indicating if the Versioning feature is enabled or not. */
+export type VersioningFeature = Feature & {
+  __typename?: 'VersioningFeature';
+  /** A flag indicating if the Versioning feature is enabled or not. */
+  isEnabled: Scalars['Boolean']['output'];
+};
+
 /**
  * Contains the flag indicating if the view count feature is enabled or not.
  * User can enable or disable the view count feature from the publication settings.
@@ -7235,6 +9119,18 @@ export type ViewCountFeature = Feature & {
   __typename?: 'ViewCountFeature';
   /** A flag indicating if the view count feature is enabled or not. */
   isEnabled: Scalars['Boolean']['output'];
+};
+
+export type Views = {
+  id: Scalars['ID']['output'];
+  /** The aggregated views. */
+  total: Scalars['Int']['output'];
+};
+
+export type Visitors = {
+  id: Scalars['ID']['output'];
+  /** The aggregated number of visitors. */
+  total: Scalars['Int']['output'];
 };
 
 export type Views = {
@@ -7359,11 +9255,37 @@ export type WidgetPinSettings = {
   location: WidgetPinLocation;
 };
 
+export type Widget = Node & {
+  __typename?: 'Widget';
+  /** Content of the widget, can be a simple string or HTML */
+  content: Scalars['String']['output'];
+  /** The date and time the widget was created. */
+  createdAt: Scalars['DateTime']['output'];
+  /** The unique identifier of the widget */
+  id: Scalars['ID']['output'];
+  pinSettings?: Maybe<WidgetPinSettings>;
+  /** WidgetId, can be embedded as %%[widgetId] in the article */
+  widgetId: Scalars['String']['output'];
+};
+
+export enum WidgetPinLocation {
+  Bottom = 'BOTTOM',
+  Top = 'TOP'
+}
+
+export type WidgetPinSettings = {
+  __typename?: 'WidgetPinSettings';
+  /** Signifies if pinning of widget on all the articles of publication is enabled or not */
+  isPinned: Scalars['Boolean']['output'];
+  /** Describes the location of the widget on the article, can be TOP or BOTTOM */
+  location: WidgetPinLocation;
+};
+
 export type DraftFragment = { __typename?: 'Draft', id: string, title?: string | null, canonicalUrl?: string | null, subtitle?: string | null, updatedAt: string, features: { __typename?: 'DraftFeatures', tableOfContents: { __typename?: 'TableOfContentsFeature', isEnabled: boolean, items: Array<{ __typename?: 'TableOfContentsItem', id: string, level: number, parentId?: string | null, slug: string, title: string }> } }, content?: { __typename?: 'Content', markdown: string } | null, coverImage?: { __typename?: 'DraftCoverImage', url: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null }, tags: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> };
 
 export type PageInfoFragment = { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null };
 
-export type PostFragment = { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null };
+export type PostFragment = { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null };
 
 export type PostThumbnailFragment = { __typename: 'Post', id: string, title: string, slug: string, publishedAt: string, cuid?: string | null, url: string, subtitle?: string | null, brief: string, readTimeInMinutes: number, views: number, author: { __typename: 'User', id: string, username: string, name: string, profilePicture?: string | null, followersCount: number }, coverImage?: { __typename: 'PostCoverImage', url: string, isPortrait: boolean, isAttributionHidden: boolean } | null };
 
@@ -7426,7 +9348,7 @@ export type PageByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type PageByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, staticPage?: { __typename?: 'StaticPage', id: string, title: string, slug: string, content: { __typename?: 'Content', markdown: string, html: string } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type PageByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, staticPage?: { __typename?: 'StaticPage', id: string, title: string, slug: string, content: { __typename?: 'Content', markdown: string, html: string } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type StaticPageFragment = { __typename?: 'StaticPage', id: string, title: string, slug: string, content: { __typename?: 'Content', markdown: string, html: string } };
 
@@ -7437,7 +9359,7 @@ export type PostsByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type PostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type PostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type MorePostsByPublicationQueryVariables = Exact<{
   host: Scalars['String']['input'];
@@ -7446,16 +9368,16 @@ export type MorePostsByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type MorePostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, comments: { __typename?: 'PostCommentConnection', totalDocuments: number }, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } } } | null };
+export type MorePostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, comments: { __typename?: 'PostCommentConnection', totalDocuments: number }, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } } } | null };
 
-export type MorePostsEdgeFragment = { __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, comments: { __typename?: 'PostCommentConnection', totalDocuments: number }, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } };
+export type MorePostsEdgeFragment = { __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, comments: { __typename?: 'PostCommentConnection', totalDocuments: number }, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } };
 
 export type PublicationByHostQueryVariables = Exact<{
   host: Scalars['String']['input'];
 }>;
 
 
-export type PublicationByHostQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type PublicationByHostQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type RssFeedQueryVariables = Exact<{
   host: Scalars['String']['input'];
@@ -7464,11 +9386,12 @@ export type RssFeedQueryVariables = Exact<{
 }>;
 
 
-export type RssFeedQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, slug: string, content: { __typename?: 'Content', html: string }, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, author: { __typename?: 'User', name: string, username: string } } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type RssFeedQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, slug: string, content: { __typename?: 'Content', html: string }, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, author: { __typename?: 'User', name: string, username: string } } }>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage?: boolean | null } }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type SearchPostsOfPublicationQueryVariables = Exact<{
   first: Scalars['Int']['input'];
   filter: SearchPostsOfPublicationFilter;
+  after?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -7492,9 +9415,9 @@ export type SeriesPostsByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type SeriesPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, series?: { __typename?: 'Series', name: string, slug: string, coverImage?: string | null, description?: { __typename?: 'Content', html: string } | null, posts: { __typename?: 'SeriesPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type SeriesPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, series?: { __typename?: 'Series', id: string, name: string, slug: string, coverImage?: string | null, description?: { __typename?: 'Content', html: string } | null, posts: { __typename?: 'SeriesPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
-export type SeriesFragment = { __typename?: 'Series', name: string, slug: string, coverImage?: string | null, description?: { __typename?: 'Content', html: string } | null, posts: { __typename?: 'SeriesPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> } };
+export type SeriesFragment = { __typename?: 'Series', id: string, name: string, slug: string, coverImage?: string | null, description?: { __typename?: 'Content', html: string } | null, posts: { __typename?: 'SeriesPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> } };
 
 export type SinglePostByPublicationQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -7502,7 +9425,7 @@ export type SinglePostByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type SinglePostByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, post?: { __typename?: 'Post', id: string, cuid?: string | null, replyCount: number, slug: string, url: string, brief: string, title: string, hasLatexInPost: boolean, subtitle?: string | null, publishedAt: string, updatedAt?: string | null, readTimeInMinutes: number, reactionCount: number, responseCount: number, publication?: { __typename?: 'Publication', id: string, title: string, isTeam: boolean, favicon?: string | null, urlPattern: UrlPattern, about?: { __typename?: 'Content', html: string } | null, domainInfo: { __typename?: 'DomainInfo', hashnodeSubdomain?: string | null, domain?: { __typename?: 'DomainStatus', host: string, ready: boolean } | null }, features: { __typename?: 'PublicationFeatures', newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } } } | null, series?: { __typename?: 'Series', id: string } | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null } | null, coverImage?: { __typename?: 'PostCoverImage', url: string, isPortrait: boolean } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, socialMediaLinks?: { __typename?: 'SocialMediaLinks', twitter?: string | null } | null, bio?: { __typename?: 'Content', html: string } | null }, coAuthors?: Array<{ __typename?: 'User', username: string, id: string, name: string, profilePicture?: string | null, bio?: { __typename?: 'Content', html: string } | null }> | null, content: { __typename?: 'Content', markdown: string, html: string }, ogMetaData?: { __typename?: 'OpenGraphMetaData', image?: string | null } | null, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, features: { __typename?: 'PostFeatures', tableOfContents: { __typename?: 'TableOfContentsFeature', isEnabled: boolean, items: Array<{ __typename?: 'TableOfContentsItem', id: string, level: number, parentId?: string | null, slug: string, title: string }> } }, preferences: { __typename?: 'PostPreferences', disableComments: boolean, stickCoverToBottom: boolean }, comments: { __typename?: 'PostCommentConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostCommentEdge', node: { __typename?: 'Comment', id: string, dateAdded: string, totalReactions: number, replies: { __typename?: 'CommentReplyConnection', edges: Array<{ __typename?: 'CommentReplyEdge', node: { __typename?: 'Reply', id: string, dateAdded: string, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null }, content: { __typename?: 'Content', markdown: string, html: string } } }> }, content: { __typename?: 'Content', markdown: string, html: string }, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null } } }> } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type SinglePostByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number }, post?: { __typename?: 'Post', id: string, cuid?: string | null, replyCount: number, slug: string, url: string, brief: string, title: string, hasLatexInPost: boolean, subtitle?: string | null, publishedAt: string, updatedAt?: string | null, readTimeInMinutes: number, reactionCount: number, responseCount: number, publication?: { __typename?: 'Publication', id: string, title: string, isTeam: boolean, favicon?: string | null, urlPattern: UrlPattern, about?: { __typename?: 'Content', html: string } | null, domainInfo: { __typename?: 'DomainInfo', hashnodeSubdomain?: string | null, domain?: { __typename?: 'DomainStatus', host: string, ready: boolean } | null }, features: { __typename?: 'PublicationFeatures', newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } } } | null, series?: { __typename?: 'Series', id: string } | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null } | null, coverImage?: { __typename?: 'PostCoverImage', url: string, isPortrait: boolean } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, socialMediaLinks?: { __typename?: 'SocialMediaLinks', twitter?: string | null } | null, bio?: { __typename?: 'Content', html: string } | null }, coAuthors?: Array<{ __typename?: 'User', username: string, id: string, name: string, profilePicture?: string | null, bio?: { __typename?: 'Content', html: string } | null }> | null, content: { __typename?: 'Content', markdown: string, html: string }, ogMetaData?: { __typename?: 'OpenGraphMetaData', image?: string | null } | null, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, features: { __typename?: 'PostFeatures', tableOfContents: { __typename?: 'TableOfContentsFeature', isEnabled: boolean, items: Array<{ __typename?: 'TableOfContentsItem', id: string, level: number, parentId?: string | null, slug: string, title: string }> } }, preferences: { __typename?: 'PostPreferences', disableComments: boolean, stickCoverToBottom: boolean }, comments: { __typename?: 'PostCommentConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostCommentEdge', node: { __typename?: 'Comment', id: string, dateAdded: string, totalReactions: number, replies: { __typename?: 'CommentReplyConnection', edges: Array<{ __typename?: 'CommentReplyEdge', node: { __typename?: 'Reply', id: string, dateAdded: string, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null }, content: { __typename?: 'Content', markdown: string, html: string } } }> }, content: { __typename?: 'Content', markdown: string, html: string }, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null } } }> } } | null, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type PostFullFragment = { __typename?: 'Post', id: string, cuid?: string | null, replyCount: number, slug: string, url: string, brief: string, title: string, hasLatexInPost: boolean, subtitle?: string | null, publishedAt: string, updatedAt?: string | null, readTimeInMinutes: number, reactionCount: number, responseCount: number, publication?: { __typename?: 'Publication', id: string, title: string, isTeam: boolean, favicon?: string | null, urlPattern: UrlPattern, about?: { __typename?: 'Content', html: string } | null, domainInfo: { __typename?: 'DomainInfo', hashnodeSubdomain?: string | null, domain?: { __typename?: 'DomainStatus', host: string, ready: boolean } | null }, features: { __typename?: 'PublicationFeatures', newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } } } | null, series?: { __typename?: 'Series', id: string } | null, seo?: { __typename?: 'SEO', title?: string | null, description?: string | null } | null, coverImage?: { __typename?: 'PostCoverImage', url: string, isPortrait: boolean } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, socialMediaLinks?: { __typename?: 'SocialMediaLinks', twitter?: string | null } | null, bio?: { __typename?: 'Content', html: string } | null }, coAuthors?: Array<{ __typename?: 'User', username: string, id: string, name: string, profilePicture?: string | null, bio?: { __typename?: 'Content', html: string } | null }> | null, content: { __typename?: 'Content', markdown: string, html: string }, ogMetaData?: { __typename?: 'OpenGraphMetaData', image?: string | null } | null, tags?: Array<{ __typename?: 'Tag', id: string, name: string, slug: string }> | null, features: { __typename?: 'PostFeatures', tableOfContents: { __typename?: 'TableOfContentsFeature', isEnabled: boolean, items: Array<{ __typename?: 'TableOfContentsItem', id: string, level: number, parentId?: string | null, slug: string, title: string }> } }, preferences: { __typename?: 'PostPreferences', disableComments: boolean, stickCoverToBottom: boolean }, comments: { __typename?: 'PostCommentConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostCommentEdge', node: { __typename?: 'Comment', id: string, dateAdded: string, totalReactions: number, replies: { __typename?: 'CommentReplyConnection', edges: Array<{ __typename?: 'CommentReplyEdge', node: { __typename?: 'Reply', id: string, dateAdded: string, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null }, content: { __typename?: 'Content', markdown: string, html: string } } }> }, content: { __typename?: 'Content', markdown: string, html: string }, author: { __typename?: 'User', name: string, id: string, username: string, profilePicture?: string | null } } }> } };
 
@@ -7534,7 +9457,7 @@ export type SlugPostsByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type SlugPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', slug: string } }> }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type SlugPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', slug: string } }> }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export type TagInitialQueryVariables = Exact<{
   slug: Scalars['String']['input'];
@@ -7554,37 +9477,36 @@ export type TagPostsByPublicationQueryVariables = Exact<{
 }>;
 
 
-export type TagPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', badges?: boolean | null, newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', logo?: string | null } | null, navbarItems: Array<{ __typename?: 'PublicationNavbarItem', id: string, type: PublicationNavigationType, label?: string | null, url?: string | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null } | null } | null };
+export type TagPostsByPublicationQuery = { __typename?: 'Query', publication?: { __typename?: 'Publication', id: string, imprint?: string | null, title: string, displayTitle?: string | null, url: string, urlPattern: UrlPattern, metaTags?: string | null, favicon?: string | null, isTeam: boolean, headerColor?: string | null, followersCount?: number | null, descriptionSEO?: string | null, posts: { __typename?: 'PublicationPostConnection', totalDocuments: number, edges: Array<{ __typename?: 'PostEdge', node: { __typename?: 'Post', id: string, title: string, url: string, publishedAt: string, slug: string, brief: string, author: { __typename?: 'User', name: string, profilePicture?: string | null, username: string }, coverImage?: { __typename?: 'PostCoverImage', url: string } | null } }> }, features: { __typename?: 'PublicationFeatures', customCSS: { __typename?: 'CustomCSSFeature', isEnabled: boolean, published?: { __typename: 'CustomCSS', home?: string | null, post?: string | null, static?: string | null, homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null, draft?: { __typename: 'CustomCSS', homeMinified?: string | null, postMinified?: string | null, staticMinified?: string | null } | null }, newsletter: { __typename?: 'NewsletterFeature', isEnabled: boolean }, viewCount: { __typename?: 'ViewCountFeature', isEnabled: boolean }, readTime: { __typename?: 'ReadTimeFeature', isEnabled: boolean }, audioBlog: { __typename?: 'AudioBlogFeature', isEnabled: boolean, voiceType: AudioBlogVoiceType }, textSelectionSharer: { __typename?: 'TextSelectionSharerFeature', isEnabled: boolean } }, about?: { __typename?: 'Content', html: string } | null, author: { __typename?: 'User', id: string, name: string, username: string, profilePicture?: string | null, followersCount: number }, ogMetaData: { __typename?: 'OpenGraphMetaData', image?: string | null }, preferences: { __typename?: 'Preferences', layout?: PublicationLayout | null, logo?: string | null, disableFooterBranding?: boolean | null, enabledPages?: { __typename?: 'PagesPreferences', newsletter?: boolean | null, members?: boolean | null } | null, darkMode?: { __typename?: 'DarkModePreferences', enabled?: boolean | null, logo?: string | null } | null, navbarItems: Array<{ __typename: 'PublicationNavbarItem', id: string, label?: string | null, url?: string | null, priority?: number | null, type: PublicationNavigationType, series?: { __typename: 'Series', id: string } | null, page?: { __typename: 'StaticPage', id: string } | null }> }, links?: { __typename?: 'PublicationLinks', twitter?: string | null, instagram?: string | null, github?: string | null, website?: string | null, hashnode?: string | null, youtube?: string | null, linkedin?: string | null, mastodon?: string | null } | null, integrations?: { __typename?: 'PublicationIntegrations', umamiWebsiteUUID?: string | null, gaTrackingID?: string | null, fbPixelID?: string | null, hotjarSiteID?: string | null, matomoURL?: string | null, matomoSiteID?: string | null, fathomSiteID?: string | null, gTagManagerID?: string | null, fathomCustomDomain?: string | null, fathomCustomDomainEnabled?: boolean | null, plausibleAnalyticsEnabled?: boolean | null, koalaPublicKey?: string | null, msClarityID?: string | null } | null } | null };
 
 export const DraftFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Draft"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Draft"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalUrl"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tableOfContents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<DraftFragment, unknown>;
 export const PageInfoFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<PageInfoFragment, unknown>;
 export const PostThumbnailFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<PostThumbnailFragment, unknown>;
-export const PublicationFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}}]} as unknown as DocumentNode<PublicationFragment, unknown>;
-export const RequiredPublicationFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}}]} as unknown as DocumentNode<RequiredPublicationFieldsFragment, unknown>;
+export const PublicationFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}}]} as unknown as DocumentNode<PublicationFragment, unknown>;
 export const RequiredStaticPageFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredStaticPageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]} as unknown as DocumentNode<RequiredStaticPageFieldsFragment, unknown>;
 export const StaticPageFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"StaticPage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<StaticPageFragment, unknown>;
-export const PostFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<PostFragment, unknown>;
-export const MorePostsEdgeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MorePostsEdge"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEdge"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<MorePostsEdgeFragment, unknown>;
-export const SeriesFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Series"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Series"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<SeriesFragment, unknown>;
+export const PostFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<PostFragment, unknown>;
+export const MorePostsEdgeFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MorePostsEdge"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEdge"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<MorePostsEdgeFragment, unknown>;
+export const SeriesFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Series"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Series"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<SeriesFragment, unknown>;
 export const PostFullFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"replyCount"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"hasLatexInPost"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"reactionCount"}},{"kind":"Field","name":{"kind":"Name","value":"responseCount"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"socialMediaLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}}]}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"coAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tableOfContents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"disableComments"}},{"kind":"Field","name":{"kind":"Name","value":"stickCoverToBottom"}}]}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"25"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"totalReactions"}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<PostFullFragment, unknown>;
 export const RequiredSitemapPostFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredSitemapPostFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<RequiredSitemapPostFieldsFragment, unknown>;
-export const StaticPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"StaticPage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredPublicationFields"}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredStaticPageFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredStaticPageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]} as unknown as DocumentNode<StaticPageQuery, StaticPageQueryVariables>;
+export const StaticPageDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"StaticPage"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredStaticPageFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredStaticPageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]} as unknown as DocumentNode<StaticPageQuery, StaticPageQueryVariables>;
 export const SubscribeToNewsletterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SubscribeToNewsletter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SubscribeToNewsletterInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"subscribeToNewsletter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<SubscribeToNewsletterMutation, SubscribeToNewsletterMutationVariables>;
 export const DraftByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"DraftById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ObjectId"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"draft"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Draft"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Draft"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Draft"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalUrl"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tableOfContents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]} as unknown as DocumentNode<DraftByIdQuery, DraftByIdQueryVariables>;
-export const HomePageInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePageInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredPublicationFields"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pinnedPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<HomePageInitialQuery, HomePageInitialQueryVariables>;
+export const HomePageInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePageInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pinnedPost"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<HomePageInitialQuery, HomePageInitialQueryVariables>;
 export const HomePagePostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"HomePagePosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PublicationPostConnectionFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<HomePagePostsQuery, HomePagePostsQueryVariables>;
-export const NewsletterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Newsletter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredPublicationFields"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"recentPosts"},"name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<NewsletterQuery, NewsletterQueryVariables>;
-export const PageByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PageByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"StaticPage"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"StaticPage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<PageByPublicationQuery, PageByPublicationQueryVariables>;
-export const PostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<PostsByPublicationQuery, PostsByPublicationQueryVariables>;
-export const MorePostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MorePostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"MorePostsEdge"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MorePostsEdge"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEdge"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<MorePostsByPublicationQuery, MorePostsByPublicationQueryVariables>;
-export const PublicationByHostDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PublicationByHost"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}}]} as unknown as DocumentNode<PublicationByHostQuery, PublicationByHostQueryVariables>;
-export const RssFeedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"RSSFeed"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<RssFeedQuery, RssFeedQueryVariables>;
-export const SearchPostsOfPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SearchPostsOfPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SearchPostsOfPublicationFilter"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"searchPostsOfPublication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"reactionCount"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publication"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<SearchPostsOfPublicationQuery, SearchPostsOfPublicationQueryVariables>;
-export const SeriesPageInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SeriesPageInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredPublicationFields"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<SeriesPageInitialQuery, SeriesPageInitialQueryVariables>;
-export const SeriesPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SeriesPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"seriesSlug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"series"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"seriesSlug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Series"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Series"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Series"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SeriesPostsByPublicationQuery, SeriesPostsByPublicationQueryVariables>;
-export const SinglePostByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SinglePostByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostFull"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"replyCount"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"hasLatexInPost"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"reactionCount"}},{"kind":"Field","name":{"kind":"Name","value":"responseCount"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"socialMediaLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}}]}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"coAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tableOfContents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"disableComments"}},{"kind":"Field","name":{"kind":"Name","value":"stickCoverToBottom"}}]}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"25"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"totalReactions"}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<SinglePostByPublicationQuery, SinglePostByPublicationQueryVariables>;
+export const NewsletterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Newsletter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"recentPosts"},"name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"3"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<NewsletterQuery, NewsletterQueryVariables>;
+export const PageByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PageByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"staticPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"StaticPage"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"StaticPage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]} as unknown as DocumentNode<PageByPublicationQuery, PageByPublicationQueryVariables>;
+export const PostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<PostsByPublicationQuery, PostsByPublicationQueryVariables>;
+export const MorePostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MorePostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"MorePostsEdge"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MorePostsEdge"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PostEdge"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<MorePostsByPublicationQuery, MorePostsByPublicationQueryVariables>;
+export const PublicationByHostDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"PublicationByHost"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}}]} as unknown as DocumentNode<PublicationByHostQuery, PublicationByHostQueryVariables>;
+export const RssFeedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"RSSFeed"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<RssFeedQuery, RssFeedQueryVariables>;
+export const SearchPostsOfPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SearchPostsOfPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"filter"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SearchPostsOfPublicationFilter"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"searchPostsOfPublication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"filter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"reactionCount"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publication"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<SearchPostsOfPublicationQuery, SearchPostsOfPublicationQueryVariables>;
+export const SeriesPageInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SeriesPageInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<SeriesPageInitialQuery, SeriesPageInitialQueryVariables>;
+export const SeriesPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SeriesPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"seriesSlug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"series"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"seriesSlug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Series"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Series"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Series"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SeriesPostsByPublicationQuery, SeriesPostsByPublicationQueryVariables>;
+export const SinglePostByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SinglePostByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}}]}},{"kind":"Field","name":{"kind":"Name","value":"post"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostFull"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostFull"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"replyCount"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"hasLatexInPost"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"reactionCount"}},{"kind":"Field","name":{"kind":"Name","value":"responseCount"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"socialMediaLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}}]}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"coAuthors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"bio"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tableOfContents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"level"}},{"kind":"Field","name":{"kind":"Name","value":"parentId"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"disableComments"}},{"kind":"Field","name":{"kind":"Name","value":"stickCoverToBottom"}}]}},{"kind":"Field","name":{"kind":"Name","value":"comments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"25"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"totalReactions"}},{"kind":"Field","name":{"kind":"Name","value":"replies"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"10"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"dateAdded"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"markdown"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<SinglePostByPublicationQuery, SinglePostByPublicationQueryVariables>;
 export const SitemapDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Sitemap"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"postsCount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"postsAfter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"staticPagesCount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"staticPages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"staticPagesCount"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"postsCount"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"postsAfter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredSitemapPostFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredSitemapPostFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<SitemapQuery, SitemapQueryVariables>;
 export const MoreSitemapPostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MoreSitemapPosts"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"postsCount"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"postsAfter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"postsCount"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"postsAfter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredSitemapPostFields"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageInfo"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredSitemapPostFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"tags"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageInfo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}}]} as unknown as DocumentNode<MoreSitemapPostsQuery, MoreSitemapPostsQueryVariables>;
-export const SlugPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SlugPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}}]} as unknown as DocumentNode<SlugPostsByPublicationQuery, SlugPostsByPublicationQueryVariables>;
-export const TagInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TagInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tag"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"tagline"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"RequiredPublicationFields"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tagSlugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"slug"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RequiredPublicationFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"canonicalURL"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"hasBadges"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}},{"kind":"Field","name":{"kind":"Name","value":"text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"enabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"isSubscriptionModalDisabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"wmPaymentPointer"}},{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"domainInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"hashnodeSubdomain"}},{"kind":"Field","name":{"kind":"Name","value":"domain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}},{"kind":"Field","name":{"kind":"Name","value":"wwwPrefixedDomain"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"host"}},{"kind":"Field","name":{"kind":"Name","value":"ready"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"redirectionRules"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"source"}},{"kind":"Field","name":{"kind":"Name","value":"destination"}},{"kind":"Field","name":{"kind":"Name","value":"type"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<TagInitialQuery, TagInitialQueryVariables>;
-export const TagPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TagPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tagSlug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tagSlugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"tagSlug"}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"badges"}},{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<TagPostsByPublicationQuery, TagPostsByPublicationQueryVariables>;
+export const SlugPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SlugPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"slug"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}}]} as unknown as DocumentNode<SlugPostsByPublicationQuery, SlugPostsByPublicationQueryVariables>;
+export const TagInitialDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TagInitial"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"tag"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"slug"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slug"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"tagline"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tagSlugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"slug"}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PostThumbnail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PostThumbnail"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"cuid"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"subtitle"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}},{"kind":"Field","name":{"kind":"Name","value":"readTimeInMinutes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"isPortrait"}},{"kind":"Field","name":{"kind":"Name","value":"isAttributionHidden"}}]}}]}}]} as unknown as DocumentNode<TagInitialQuery, TagInitialQueryVariables>;
+export const TagPostsByPublicationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"TagPostsByPublication"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"host"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"tagSlug"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"after"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"publication"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"host"},"value":{"kind":"Variable","name":{"kind":"Name","value":"host"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Publication"}},{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"filter"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"tagSlugs"},"value":{"kind":"ListValue","values":[{"kind":"Variable","name":{"kind":"Name","value":"tagSlug"}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"after"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalDocuments"}},{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Post"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Publication"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Publication"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"imprint"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"urlPattern"}},{"kind":"Field","name":{"kind":"Name","value":"metaTags"}},{"kind":"Field","name":{"kind":"Name","value":"favicon"}},{"kind":"Field","name":{"kind":"Name","value":"isTeam"}},{"kind":"Field","name":{"kind":"Name","value":"headerColor"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}},{"kind":"Field","name":{"kind":"Name","value":"descriptionSEO"}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"home"}},{"kind":"Field","name":{"kind":"Name","value":"post"}},{"kind":"Field","name":{"kind":"Name","value":"static"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"about"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"viewCount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"readTime"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"audioBlog"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"voiceType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textSelectionSharer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}}]}},{"kind":"Field","name":{"kind":"Name","value":"customCSS"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"published"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}},{"kind":"Field","name":{"kind":"Name","value":"draft"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"homeMinified"}},{"kind":"Field","name":{"kind":"Name","value":"postMinified"}},{"kind":"Field","name":{"kind":"Name","value":"staticMinified"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"followersCount"}}]}},{"kind":"Field","name":{"kind":"Name","value":"ogMetaData"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}}]}},{"kind":"Field","name":{"kind":"Name","value":"preferences"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"layout"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}},{"kind":"Field","name":{"kind":"Name","value":"disableFooterBranding"}},{"kind":"Field","name":{"kind":"Name","value":"enabledPages"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"}},{"kind":"Field","name":{"kind":"Name","value":"members"}}]}},{"kind":"Field","name":{"kind":"Name","value":"darkMode"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"enabled"}},{"kind":"Field","name":{"kind":"Name","value":"logo"}}]}},{"kind":"Field","name":{"kind":"Name","value":"navbarItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"priority"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"series"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"twitter"}},{"kind":"Field","name":{"kind":"Name","value":"instagram"}},{"kind":"Field","name":{"kind":"Name","value":"github"}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"hashnode"}},{"kind":"Field","name":{"kind":"Name","value":"youtube"}},{"kind":"Field","name":{"kind":"Name","value":"linkedin"}},{"kind":"Field","name":{"kind":"Name","value":"mastodon"}}]}},{"kind":"Field","name":{"kind":"Name","value":"integrations"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"umamiWebsiteUUID"}},{"kind":"Field","name":{"kind":"Name","value":"gaTrackingID"}},{"kind":"Field","name":{"kind":"Name","value":"fbPixelID"}},{"kind":"Field","name":{"kind":"Name","value":"hotjarSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"matomoURL"}},{"kind":"Field","name":{"kind":"Name","value":"matomoSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomSiteID"}},{"kind":"Field","name":{"kind":"Name","value":"gTagManagerID"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomain"}},{"kind":"Field","name":{"kind":"Name","value":"fathomCustomDomainEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"plausibleAnalyticsEnabled"}},{"kind":"Field","name":{"kind":"Name","value":"koalaPublicKey"}},{"kind":"Field","name":{"kind":"Name","value":"msClarityID"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Post"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Post"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"profilePicture"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}},{"kind":"Field","name":{"kind":"Name","value":"coverImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"publishedAt"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"brief"}}]}}]} as unknown as DocumentNode<TagPostsByPublicationQuery, TagPostsByPublicationQueryVariables>;
