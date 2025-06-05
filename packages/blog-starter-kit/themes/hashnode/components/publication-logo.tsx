@@ -95,7 +95,7 @@ const DefaultLogo = ({
       )}
     >
       <Link
-        href={`/${isPostPage ? '?source=top_nav_blog_home' : ''}`}
+        href={`/${isPostPage ? '?source=top_nav_blog_home' : 'https://godspeed.systems'}`}
         className={twJoin(
           'focus-ring-base flex flex-row items-center','focus-ring-colors-base',
         )}

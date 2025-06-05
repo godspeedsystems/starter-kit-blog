@@ -1,5 +1,6 @@
-import { AppProps } from 'next/app';
-import { withUrqlClient } from 'next-urql';
+import { AppProps, AppInitialProps } from 'next/app';
+import { NextComponentType, NextPageContext } from 'next';
+import { withUrqlClient, WithUrqlProps } from 'next-urql';
 import 'tailwindcss/tailwind.css'
 
 import '../styles/index.css';
@@ -8,7 +9,7 @@ import { getUrqlClientConfig } from '../lib/api/client';
 
 import { Fragment } from 'react';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppInitialProps<any> & WithUrqlProps) {
 	return (
 		<Fragment>
 			 <GlobalFontVariables />

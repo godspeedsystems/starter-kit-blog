@@ -102,8 +102,8 @@ export const getServerSideProps: GetServerSideProps<{
     host,
     slug: 'newsletter',
   };
-  const publicationInfo = await urqlClient
-    .query(NewsletterDocument, gqlVariables, {
+  const publicationInfo = await urqlClient?.
+    query(NewsletterDocument, gqlVariables, {
       fetchOptions: {
         headers: createHeaders(),
       },
@@ -111,14 +111,14 @@ export const getServerSideProps: GetServerSideProps<{
     })
     .toPromise();
 
-  if (publicationInfo.error) {
+  if (publicationInfo?.error) {
     log.error('Error while fetching publication info', {
       variables: gqlVariables,
-      error: publicationInfo.error,
+      error: publicationInfo?.error,
     });
     throw publicationInfo.error;
   }
-  if (!publicationInfo.data?.publication) {
+  if (!publicationInfo?.data?.publication) {
     log.error('Publication not found fetching publication info; returning 404', {
       variables: gqlVariables,
     });

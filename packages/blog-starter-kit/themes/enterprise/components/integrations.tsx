@@ -14,7 +14,7 @@ export function Integrations() {
 		fathomCustomDomainEnabled,
 		plausibleAnalyticsEnabled,
 	} = publication.integrations ?? {};
-	const domainURL = new URL(publication.url).hostname;
+	const domainURL = publication?.url ? new URL(publication.url).hostname : '';
 
 	let fbPixel = `
     !function(f,b,e,v,n,t,s)

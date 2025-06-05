@@ -33,7 +33,9 @@ export const Header = (props: Props) => {
 							<HeaderLeftSidebar publication={publication} />
 						</div>
 						<div className="hidden md:block">
-							<PublicationLogo publication={publication} size="lg" withProfileImage />
+							<a href="https://godspeed.systems/">
+								<PublicationLogo publication={publication} size="lg" withProfileImage />
+							</a>
 						</div>
 					</div>
 
@@ -43,13 +45,15 @@ export const Header = (props: Props) => {
 						)}
 					>
 						<HeaderBlogSearch publication={publication} />
-						<Button as="a" href="#" type="primary" label="Sign up" />
+						<Button as="a" href="https://godspeed.systems/" type="primary" label="Sign up" />
 					</div>
 				</div>
 
 				{/* Logo for mobile view */}
 				<div className="mx-auto my-5 flex w-2/3 flex-row items-center justify-center md:hidden">
-					<PublicationLogo publication={publication} size="xl" />
+					<a href="https://godspeed.systems/">
+						<PublicationLogo publication={publication} size="xl" />
+					</a>
 				</div>
 
 				<div className="blog-sub-header" data-testid="blog-sub-header">

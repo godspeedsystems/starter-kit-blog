@@ -8,7 +8,6 @@ import { AppProvider } from '../../components/contexts/appContext';
 import { Header } from '../../components/header';
 import { Layout } from '../../components/layout';
 import {
-	Post,
 	PublicationFragment,
 	TagInitialDocument,
 	TagInitialQuery,
@@ -129,7 +128,7 @@ export const getServerSideProps: any = async (ctx: any) => { // TODO: type needs
   const host = (queryHost as string) || req.headers.host!;
   const slug = query.slug as string;
 
-  const { data } = await urqlClient
+  const { data } = await urqlClient!
     .query(
       TagInitialDocument,
       { 

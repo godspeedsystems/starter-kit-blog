@@ -61,7 +61,7 @@ export default function Index(
 		variables: { host, first: initialLimit, filter: { excludePinnedPost: !!pinnedPost } },
 	});
 
-	const { posts } = data?.publication!;
+	const { posts } = data?.publication || { posts: { edges: [], pageInfo: { endCursor: null } } };
 
 	const fetchedOnce = posts.edges.length > initialLimit;
 
@@ -76,17 +76,19 @@ export default function Index(
 
 	const fetchMore = async () => {
 		setFetching(true);
-		await urqlClient
-			.query(HomePagePostsDocument, {
-				host,
-				first: dynamicLimit,
-				after: posts.pageInfo.endCursor,
-				filter: { excludePinnedPost: !!pinnedPost },
-			})
-			.toPromise()
-			.finally(() => {
-				setFetching(false);
-			});
+		if (urqlClient) {
+			await urqlClient
+				.query(HomePagePostsDocument, {
+					host,
+					first: dynamicLimit,
+					after: posts.pageInfo.endCursor,
+					filter: { excludePinnedPost: !!pinnedPost },
+				})
+				.toPromise()
+				.finally(() => {
+					setFetching(false);
+				});
+		}
 	};
 
 	return (
@@ -200,9 +202,24 @@ export const getStaticProps = async () => {
 	const ssrCache = createSSRExchange();
 	const urqlClient = initUrqlClient(getUrqlClientConfig(ssrCache), false);
 	const host = process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST;
+
+	if (!host) {
+		console.error('NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST is not defined');
+		return {
+			notFound: true,
+			revalidate: REVALIDATION_INTERVAL,
+		};
+	}
 	const homePageInitialQueryVariables: HomePageInitialQueryVariables = {
 		host,
 	};
+	if (!urqlClient) {
+		console.error('urqlClient is null in getStaticProps');
+		return {
+			notFound: true,
+			revalidate: REVALIDATION_INTERVAL,
+		};
+	}
 	const publicationInfo = await urqlClient
 		.query(HomePageInitialDocument, homePageInitialQueryVariables, {
 			fetchOptions: {
@@ -240,6 +257,13 @@ export const getStaticProps = async () => {
 		first: initialLimit,
 		filter: { excludePinnedPost: !!publication.pinnedPost },
 	};
+	if (!urqlClient) {
+		console.error('urqlClient is null in getStaticProps');
+		return {
+			notFound: true,
+			revalidate: REVALIDATION_INTERVAL,
+		};
+	}
 	const homePagePostsResponse = await urqlClient
 		.query(HomePagePostsDocument, homePagePostsVariables, {
 			fetchOptions: {

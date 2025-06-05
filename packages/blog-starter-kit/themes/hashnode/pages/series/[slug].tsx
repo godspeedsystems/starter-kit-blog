@@ -153,8 +153,7 @@ export async function getServerSideProps(ctx: { req: any; res: any; query: any; 
 	const ssrCache = createSSRExchange();
 	const urqlClient = initUrqlClient(getUrqlClientConfig(ssrCache), false);
 	let rawCurrentMenuId = '';
-	const publicationInfo = await urqlClient
-		.query(
+	const publicationInfo = await urqlClient?.query(
 		SeriesPageInitialDocument,
 		{ 
 			host: process.env.NEXT_PUBLIC_HASHNODE_PUBLICATION_HOST,
@@ -171,7 +170,7 @@ export async function getServerSideProps(ctx: { req: any; res: any; query: any; 
 		)
 		.toPromise();
 	
-		const { publication } = publicationInfo.data || {};
+		const { publication } = publicationInfo?.data || {};
 
 		if (!publication) {
 		  return {

@@ -15,6 +15,12 @@ const getBasePath = () => {
 };
 
 const getRedirectionRules = async () => {
+	if (typeof window === 'undefined') {
+		return [];
+	}
+
+	const { request, gql } = require('graphql-request');
+
 	const query = gql`
 		query GetRedirectionRules {
 			publication(host: "${host}") {
@@ -89,7 +95,11 @@ const config = {
 		];
 	},
 	async redirects() {
-		return await getRedirectionRules();
+		// Only execute getRedirectionRules in a browser environment
+		if (typeof window !== 'undefined') {
+			return await getRedirectionRules();
+		}
+		return [];
 	},
 };
 

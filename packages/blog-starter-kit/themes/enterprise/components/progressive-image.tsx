@@ -18,11 +18,11 @@ class ProgressiveImage extends React.Component<{
   className: string;
   css: string;
 }> {
-  image: HTMLImageElement | null = null;
+  imageRef = React.createRef<HTMLImageElement>();
 
   componentDidMount() {
-    if (!(window as any).lazySizes && this.image) {
-      this.image.setAttribute('src', this.image.getAttribute('data-src') || '');
+    if (!(window as any).lazySizes && this.imageRef.current) {
+      this.imageRef.current.setAttribute('src', this.imageRef.current.getAttribute('data-src') || '');
     }
   }
 
@@ -48,8 +48,8 @@ class ProgressiveImage extends React.Component<{
         data-sizes="auto"
         loading="lazy"
         src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        // eslint-disable-next-line no-return-assign
-        ref={(c) => (this.image = c || null)}
+        
+        ref={this.imageRef}
         data-src={resizedImage}
         width={resize.w}
         height={resize.h}
